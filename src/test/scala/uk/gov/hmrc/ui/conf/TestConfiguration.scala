@@ -8,15 +8,6 @@ object TestConfiguration {
   val defaultConfig: Config   = config.getConfig("local")
   val envConfig: Config       = config.getConfig(env).withFallback(defaultConfig)
   
-  val enrolmentConfig: EnrolmentConfig = {
-    val key           = envConfig.getString("enrolment.key")
-    val identifier    = envConfig.getString("environment.identifier")
-    
-    EnrolmentConfig(
-      individual = Enrolment(key, identifier, envConfig.getString("enrolment.individualId")),
-      OrganisationUser = Enrolment(key, identifier, envConfig.getString("environment.organisationId"))
-    )
-  }
   
   def url(service: String): String = {
     val host = env match {
