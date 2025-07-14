@@ -33,34 +33,35 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerator {
   val baseUrl: String             = TestConfiguration.url("crs-fatca-reporting-frontend") + ""
   private val submitButtonId: By  = By.id("submit")
   private val pageHeader: By      = By.tagName("h1")
-  
-  
+
+
   def navigateTo(url: String): Unit = {
     driver.navigate().to(url)
-    
-  def onPage(url: String = this.pageUrl): Unit =
-    if(driver.getCurrentUrl != url)
-     throw PageNotFoundException(
-       s"Expected '$url' page, but found '${driver.getCurrentUrl}' page."
-     ) 
-     
-  def sendTextById(id: By, textToEnter: String): Unit = {
-    driver.findElement(id).clear()
-    driver.findElement(id).sendKeys(textToEnter)
-  }   
-    
-  def clickOnById(id: By): Unit = {
-    driver.findElement(id).click()
-  
-  def submitPageById(): Unit =
-    driver.findElement(submitButtonId).click()
-    
-  def submitOnPageById(): Unit = {
-    onPage()
-    driver.findElement(submitButtonId).click()
-  }  
-    
-  def checkH1(h1: String): Assertion = driver.findElement(pageHeader).getText should include(h1)  
-  }
-    
+
+    def onPage(url: String = this.pageUrl): Unit =
+      if (driver.getCurrentUrl != url)
+        throw PageNotFoundException(
+          s"Expected '$url' page, but found '${driver.getCurrentUrl}' page.")
+
+
+    def sendTextById(id: By, textToEnter: String): Unit = {
+      driver.findElement(id).clear()
+      driver.findElement(id).sendKeys(textToEnter)
+    }
+
+    def clickOnById(id: By): Unit = {
+      driver.findElement(id).click()
+
+      def submitPageById(): Unit =
+        driver.findElement(submitButtonId).click()
+
+      def submitOnPageById(): Unit = {
+        onPage()
+        driver.findElement(submitButtonId).click()
+      }
+
+      def checkH1(h1: String): Assertion = driver.findElement(pageHeader).getText should include(h1)
+
+    }
+
 }
