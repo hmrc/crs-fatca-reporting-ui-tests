@@ -23,7 +23,7 @@ case class EnrolmentConfig(
 )
 
 case class Enrolment(
-   key: String,
-   identifier: String,
-   value: String
+  key: String,
+  identifier: String,
+  value: String
 )
