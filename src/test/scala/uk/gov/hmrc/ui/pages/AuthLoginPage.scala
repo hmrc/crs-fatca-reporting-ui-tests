@@ -29,11 +29,17 @@ object AuthLoginPage extends BasePage {
   private val affinityGroupById: By  = By.id("affinityGroupSelect")
   private val authSubmitById: By     = By.id("submit-top")
 
-  private val enrolment: Enrolment = TestConfiguration.enrolmentConfig.individual
+  private val enrolment: Enrolment             = TestConfiguration.enrolmentConfig.individual
+  private val autoMatchedEnrolment: Enrolment  = TestConfiguration.enrolmentConfig.autoMatchedUser
+  private val organisationEnrolment: Enrolment = TestConfiguration.enrolmentConfig.organisationUser
+  private val enrolmentKeyById: By             = By.id("enrolment[0].name")
+  private val enrolmentIdentifierById: By      = By.id("input-0-0-name")
+  private val enrolmentValueById: By           = By.id("input-0-0-value")
 
-  private val enrolmentKeyById: By        = By.id("enrolment[0].name")
-  private val enrolmentIdentifierById: By = By.id("input-0-0-name")
-  private val enrolmentValueById: By      = By.id("input-0-0-value")
+  private val presetDropDownById: By    = By.id("presets-dropdown")
+  private val presetSubmitById: By      = By.id("add-preset")
+  private val identifierCTField: By     = By.id("input-4-0-value")
+  private val identifierCTValue: String = generateUtr(validCtUtr)
 
   def loadPage(): this.type = {
     navigateTo(pageUrl)
@@ -43,6 +49,12 @@ object AuthLoginPage extends BasePage {
 
   def selectAffinityGroup(affinityGroup: String): Unit =
     selectDropdownById(affinityGroupById).selectByVisibleText(affinityGroup)
+
+  private def addCtPreset(): Unit = {
+    selectDropdownById(presetDropDownById).selectByVisibleText("CT")
+    clickOnById(presetSubmitById)
+    sendTextById(identifierCTField, identifierCTValue)
+  }
 
   def loginAsBasic(): this.type = {
     loadPage()
@@ -54,4 +66,27 @@ object AuthLoginPage extends BasePage {
     this
   }
 
+  def loginAsOrganisationUser(): this.type = {
+    loadPage()
+    sendTextById(redirectionUrlById, redirectUrl)
+    selectAffinityGroup("Organisation")
+    sendTextById(enrolmentKeyById, organisationEnrolment.key)
+    sendTextById(enrolmentIdentifierById, organisationEnrolment.identifier)
+    sendTextById(enrolmentValueById, organisationEnrolment.value)
+    addCtPreset()
+    clickOnById(authSubmitById)
+    this
+  }
+
+  def loginAsAutoMatchedUser(): this.type = {
+    loadPage()
+    sendTextById(redirectionUrlById, redirectUrl)
+    selectAffinityGroup("Organisation")
+    sendTextById(enrolmentKeyById, autoMatchedEnrolment.key)
+    sendTextById(enrolmentIdentifierById, autoMatchedEnrolment.identifier)
+    sendTextById(enrolmentValueById, autoMatchedEnrolment.value)
+    addCtPreset()
+    clickOnById(authSubmitById)
+    this
+  }
 }
