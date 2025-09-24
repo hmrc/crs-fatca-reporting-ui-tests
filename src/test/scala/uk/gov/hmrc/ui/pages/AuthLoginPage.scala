@@ -47,12 +47,8 @@ object AuthLoginPage extends BasePage {
     this
   }
 
-//  def selectAffinityGroup(affinityGroup: String): Unit =
-//    selectDropdownById(affinityGroupById).selectByVisibleText(affinityGroup)
-
   private def addCtPreset(): Unit = {
     selectByVisibleText(presetDropDownById, "CT")
-//    selectDropdownById(presetDropDownById).selectByVisibleText("CT")
     click(presetSubmitById)
     sendKeys(identifierCTField, identifierCTValue)
   }
@@ -71,7 +67,6 @@ object AuthLoginPage extends BasePage {
     loadPage()
     sendKeys(redirectionUrlById, redirectUrl)
     selectByVisibleText(affinityGroupById, "Organisation")
-//    selectAffinityGroup("Organisation")
     sendKeys(enrolmentKeyById, organisationEnrolment.key)
     sendKeys(enrolmentIdentifierById, organisationEnrolment.identifier)
     sendKeys(enrolmentValueById, organisationEnrolment.value)
@@ -84,7 +79,6 @@ object AuthLoginPage extends BasePage {
     loadPage()
     sendKeys(redirectionUrlById, redirectUrl)
     selectByVisibleText(affinityGroupById, "Organisation")
-//    selectAffinityGroup("Organisation")
     sendKeys(enrolmentKeyById, autoMatchedEnrolment.key)
     sendKeys(enrolmentIdentifierById, autoMatchedEnrolment.identifier)
     sendKeys(enrolmentValueById, autoMatchedEnrolment.value)
