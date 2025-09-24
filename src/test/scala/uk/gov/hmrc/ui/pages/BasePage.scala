@@ -24,10 +24,9 @@ import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.utils.IdGenerators
-import uk.gov.hmrc.ui.driver.BrowserDriver
 import java.time.Duration
 
-trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
+trait BasePage extends Matchers with IdGenerators with PageObject {
 
   case class PageNotFoundException(message: String) extends Exception(message)
 
