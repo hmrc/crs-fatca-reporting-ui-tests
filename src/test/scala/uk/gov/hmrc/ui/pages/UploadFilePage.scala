@@ -17,7 +17,6 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.conf.TestConfiguration
 
 object UploadFilePage extends BasePage {
 
@@ -28,7 +27,7 @@ object UploadFilePage extends BasePage {
 
   def addFileToUpload(): Unit = {
     onPage(pageUrl)
-    clickOnById(uploadFile)
+    click(uploadFile)
   }
 
 }

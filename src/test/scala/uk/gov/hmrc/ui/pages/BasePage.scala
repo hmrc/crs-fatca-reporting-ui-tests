@@ -16,49 +16,44 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.Select
+import org.openqa.selenium.{By, WebDriver}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
 import org.scalatest.Assertion
 import org.scalatest.matchers.should.Matchers
+import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.utils.IdGenerators
 import uk.gov.hmrc.ui.driver.BrowserDriver
+import java.time.Duration
 
-trait BasePage extends BrowserDriver with Matchers with IdGenerators {
+trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
 
   case class PageNotFoundException(message: String) extends Exception(message)
 
   val pageUrl: String
   val baseUrl: String            = TestConfiguration.url("crs-fatca-reporting-frontend") + ""
   private val submitButtonId: By = By.id("submit")
+  private val backLinkText: By   = By.linkText("Back")
   private val pageHeader: By     = By.tagName("h1")
 
-  def navigateTo(url: String): Unit =
-    driver.navigate().to(url)
+  private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
+    .withTimeout(Duration.ofSeconds(2))
+    .pollingEvery(Duration.ofMillis(200))
 
-  def onPage(url: String = this.pageUrl): Unit =
-    if (driver.getCurrentUrl != url)
-      throw PageNotFoundException(s"Expected '$url' page, but found '${driver.getCurrentUrl}' page.")
+  def onPage(url: String = this.pageUrl): Unit = fluentWait.until(ExpectedConditions.urlToBe(url))
 
-  def sendTextById(id: By, textToEnter: String): Unit = {
-    driver.findElement(id).clear()
-    driver.findElement(id).sendKeys(textToEnter)
+  def clickOnBackLink(): Unit = {
+    onPage()
+    click(backLinkText)
   }
-
-  def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
-
-  def clickOnById(id: By): Unit =
-    driver.findElement(id).click()
-
-  def submitPageById(): Unit =
-    driver.findElement(submitButtonId).click()
 
   def submitOnPageById(): Unit = {
     onPage()
-    driver.findElement(submitButtonId).click()
+    click(submitButtonId)
   }
 
   def checkH1(h1: String): Assertion =
-    driver.findElement(pageHeader).getText should include(h1)
+    getText(pageHeader) should include(h1)
 
 }
