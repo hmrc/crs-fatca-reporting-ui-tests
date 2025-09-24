@@ -16,11 +16,11 @@
 
 package uk.gov.hmrc.ui.utils
 
-import uk.gov.hmrc.domain.{Generator, SaUtrGenerator}
+import uk.gov.hmrc.domain.{NinoGenerator, SaUtrGenerator}
 
 trait IdGenerators {
 
-  val randomisedNino: String = new Generator().nextNino.toString()
+  val randomisedNino: String = new NinoGenerator().nextNino.nino
   val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
 
   // prefixes
