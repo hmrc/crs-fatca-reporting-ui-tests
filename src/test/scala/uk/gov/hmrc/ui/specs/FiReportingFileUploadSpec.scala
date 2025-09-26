@@ -26,24 +26,26 @@ class FiReportingFileUploadSpec extends BaseSpec {
     Scenario("Upload Journey (Standard FI)", ReportingTests) {
       Given("The user logs in as an individual")
       AuthLoginPage.loginAsBasic()
+
       When("The user hits the uploading page and continues file upload journey")
       UploadFilePage.checkPage()
 
     }
+
     Scenario("Upload Journey for Fi is user", ReportingTests) {
       Given("The User log in as an organisation")
       AuthLoginPage.loginAsOrganisationUser()
+
       When("The user hits the uploading page and continues file upload journey")
       UploadFilePage.checkPage()
-
     }
 
     Scenario("Upload Journey for Organisation CT user", ReportingTests) {
       Given("The user login in as an organisation CT user")
       AuthLoginPage.loginAsAutoMatchedUser()
+
       When("The user hits the uploading page and continues file upload journey")
       UploadFilePage.checkPage()
-
     }
   }
 }
