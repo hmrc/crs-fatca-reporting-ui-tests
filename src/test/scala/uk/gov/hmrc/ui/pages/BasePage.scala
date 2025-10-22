@@ -23,24 +23,31 @@ import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.conf.TestConfiguration
+import uk.gov.hmrc.ui.driver.BrowserDriver
 import uk.gov.hmrc.ui.utils.IdGenerators
+import org.openqa.selenium.*
+
 import java.time.Duration
 
-trait BasePage extends Matchers with IdGenerators with PageObject {
+trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
 
   case class PageNotFoundException(message: String) extends Exception(message)
 
   val pageUrl: String
-  val baseUrl: String            = TestConfiguration.url("crs-fatca-reporting-frontend") + ""
-  private val submitButtonId: By = By.id("submit")
-  private val backLinkText: By   = By.linkText("Back")
-  private val pageHeader: By     = By.tagName("h1")
+  val baseUrl: String    = TestConfiguration.url("crs-fatca-reporting-frontend") + "/report/upload-file"
+  val submitButtonId: By = By.id("submit")
+  val backLinkText: By   = By.linkText("Back")
+  val pageHeader: By     = By.tagName("h1")
+  val fileUploadId: By   = By.id("file-upload")
 
   private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(2))
     .pollingEvery(Duration.ofMillis(200))
 
-  def onPage(url: String = this.pageUrl): Unit = fluentWait.until(ExpectedConditions.urlToBe(url))
+  def onPage(url: String = this.pageUrl): this.type = {
+    fluentWait.until(ExpectedConditions.urlToBe(url))
+    this
+  }
 
   def clickOnBackLink(): Unit = {
     onPage()
@@ -54,5 +61,14 @@ trait BasePage extends Matchers with IdGenerators with PageObject {
 
   def checkH1(h1: String): Assertion =
     getText(pageHeader) should include(h1)
+
+  def uploadAnyFile(file: String): this.type = {
+    if (file.nonEmpty) {
+      val filePath      = s"${System.getProperty("user.dir")}/src/test/resources/files/$file"
+      val uploadElement = driver.findElement(fileUploadId)
+      uploadElement.sendKeys(filePath)
+    }
+    this
+  }
 
 }

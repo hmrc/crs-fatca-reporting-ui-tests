@@ -16,15 +16,12 @@
 
 package uk.gov.hmrc.ui.pages
 
-object UploadFilePage extends BasePage {
+object InvalidMessageTypePage extends BasePage {
 
-  override val pageUrl: String = baseUrl
+  override val pageUrl: String = baseUrl + "/report/problem/invalid-messagetype"
 
-  def fileUpload(file: String): this.type = {
+  def checkPage(): this.type = {
     onPage(pageUrl)
-    uploadAnyFile(file)
-    click(submitButtonId)
     this
   }
-
 }
