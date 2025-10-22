@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.{By, WebDriver}
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
 import org.scalatest.Assertion
-import org.scalatest.matchers.should.Matchers._
+import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.conf.TestConfiguration
@@ -29,7 +29,7 @@ import org.openqa.selenium.*
 
 import java.time.Duration
 
-trait BasePage extends BrowserDriver with IdGenerators with PageObject {
+trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
 
   case class PageNotFoundException(message: String) extends Exception(message)
 
