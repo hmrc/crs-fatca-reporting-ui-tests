@@ -20,7 +20,7 @@ object InvalidMessageTypePage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/report/problem/invalid-messagetype"
 
-  def checkPage(): this.type        = {
+  def checkPage(): this.type = {
     onPage(pageUrl)
     this
   }
