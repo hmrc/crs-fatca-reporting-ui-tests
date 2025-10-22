@@ -16,15 +16,12 @@
 
 package uk.gov.hmrc.ui.pages
 
-object UploadFilePage extends BasePage {
+object ReportingPeriodProblemPage extends BasePage {
 
-  override val pageUrl: String = baseUrl +  "/report/upload-file"
+  override val pageUrl: String = baseUrl + "/report/problem/reporting-period"
 
-  def fileUpload(file: String): this.type = {
+  def checkPage(): this.type = {
     onPage(pageUrl)
-    uploadAnyFile(file)
-    click(submitButtonId)
     this
   }
-
 }

@@ -14,4 +14,4 @@ if [ -z "$ENVIRONMENT" ]; then
     echo ""
 fi
 
-sbt clean -Dbrowser="${BROWSER_TYPE:=$DEFAULT_BROWSER}" -Denvironment="${ENV:=local}" -Dbrowser.option.headless=false -Daccessibility.assessment=false -Dsecurity.assessment=true "testOnly uk.gov.hmrc.test.ui.specs.* -- -n SoloTests"
+sbt clean -Dbrowser="${BROWSER_TYPE:=$DEFAULT_BROWSER}" -Denvironment="${ENV:=local}" -Dbrowser.option.headless=true -Daccessibility.assessment=false -Dsecurity.assessment=true "testOnly uk.gov.hmrc.test.ui.specs.* -- -n SoloTests"

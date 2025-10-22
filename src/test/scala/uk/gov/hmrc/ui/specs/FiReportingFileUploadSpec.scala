@@ -39,7 +39,8 @@ class FiReportingFileUploadSpec extends BaseSpec {
       When("The user hits the uploading page and continues file upload journey")
       UploadFilePage
         .onPage()
-        .fileUpload("invalid-messagetype-crs-xml.xml")
+        .fileUpload("fi-not-matching-crs-xml.xml")
+      FiNotMatchingPage.onPage()
     }
 
     Scenario("Upload Journey for Organisation CT user", ReportingTests, SoloTests) {

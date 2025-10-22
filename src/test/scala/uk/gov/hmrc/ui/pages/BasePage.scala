@@ -34,7 +34,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   case class PageNotFoundException(message: String) extends Exception(message)
 
   val pageUrl: String
-  val baseUrl: String    = TestConfiguration.url("crs-fatca-reporting-frontend") + "/report/upload-file"
+  val baseUrl: String    = TestConfiguration.url("crs-fatca-reporting-frontend")
   val submitButtonId: By = By.id("submit")
   val backLinkText: By   = By.linkText("Back")
   val pageHeader: By     = By.tagName("h1")
