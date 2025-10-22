@@ -23,29 +23,31 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
   Feature("Upload File Journey") {
 
-    Scenario("Upload Journey (Standard FI)", ReportingTests) {
+    Scenario("Upload Journey (Standard FI)", ReportingTests, SoloTests) {
       Given("The user logs in as an individual")
       AuthLoginPage.loginAsBasic()
 
       When("The user hits the uploading page and continues file upload journey")
-      UploadFilePage.checkPage()
+      UploadFilePage.onPage()
 
     }
 
-    Scenario("Upload Journey for Fi is user", ReportingTests) {
+    Scenario("Upload Journey for Fi is user", ReportingTests, SoloTests) {
       Given("The User log in as an organisation")
       AuthLoginPage.loginAsOrganisationUser()
 
       When("The user hits the uploading page and continues file upload journey")
-      UploadFilePage.checkPage()
+      UploadFilePage
+        .onPage()
+        .fileUpload("invalid-messagetype-crs-xml.xml")
     }
 
-    Scenario("Upload Journey for Organisation CT user", ReportingTests) {
+    Scenario("Upload Journey for Organisation CT user", ReportingTests, SoloTests) {
       Given("The user login in as an organisation CT user")
       AuthLoginPage.loginAsAutoMatchedUser()
 
       When("The user hits the uploading page and continues file upload journey")
-      UploadFilePage.checkPage()
+      UploadFilePage.onPage()
     }
   }
 }

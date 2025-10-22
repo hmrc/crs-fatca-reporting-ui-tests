@@ -23,7 +23,7 @@ object AuthLoginPage extends BasePage {
 
   override val pageUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
 
-  private val redirectUrl: String = TestConfiguration.url("crs-fatca-reporting-frontend")
+  private val redirectUrl: String = TestConfiguration.url("crs-fatca-reporting-frontend") + "/report/upload-file"
 
   private val redirectionUrlById: By = By.id("redirectionUrl")
   private val affinityGroupById: By  = By.id("affinityGroupSelect")

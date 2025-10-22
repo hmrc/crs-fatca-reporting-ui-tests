@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.specs.tags
 
-object UploadFilePage extends BasePage {
+import org.scalatest.Tag
 
-  override val pageUrl: String = baseUrl
-
-  def fileUpload(file: String): this.type = {
-    onPage(pageUrl)
-    uploadAnyFile(file)
-    click(submitButtonId)
-    this
-  }
-
-}
+object SoloTests extends Tag("SoloTests")
