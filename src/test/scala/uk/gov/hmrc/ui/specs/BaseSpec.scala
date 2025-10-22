@@ -32,7 +32,7 @@ trait BaseSpec
   override def beforeEach(): Unit =
     startBrowser()
 
-//  override def afterEach(): Unit =
-//    quitBrowser()
+  override def afterEach(): Unit =
+    quitBrowser()
 
 }
