@@ -39,6 +39,8 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   val backLinkText: By   = By.linkText("Back")
   val pageHeader: By     = By.tagName("h1")
   val fileUploadId: By   = By.id("file-upload")
+  val yesRadioId: By     = By.id("value")
+  val noRadioId: By      = By.id("value-no")
 
   private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(2))
