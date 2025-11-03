@@ -16,25 +16,21 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
-
 object FatcaThresholdsPage extends BasePage {
 
-  override val pageUrl: String    = baseUrl + "/elections/fatca/thresholds"
-  val applyingThresholdsYesId: By = By.id("vlaue")
-  val applyingThresholdsNoId: By  = By.id("value-no")
+  override val pageUrl: String = baseUrl + "/elections/fatca/thresholds"
 
   def checkPage(): Unit = {
     onPage(pageUrl)
 
     def fatcaThresholdsYes(): Unit = {
       onPage(pageUrl)
-      click(applyingThresholdsYesId)
+      click(yesRadioId)
       click(submitButtonId)
     }
     def fatcaThresholdsNo(): Unit  = {
       onPage(pageUrl)
-      click(applyingThresholdsNoId)
+      click(noRadioId)
       click(submitButtonId)
     }
   }

@@ -16,26 +16,22 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
-
 object CRSDormantAccountsPage extends BasePage {
 
-  override val pageUrl: String         = baseUrl + "/elections/crs/dormant-accounts"
-  val reportableAccountForCrsYesId: By = By.id("value")
-  val reportableAccountForCrsNoId: By  = By.id("value-no")
+  override val pageUrl: String = baseUrl + "/elections/crs/dormant-accounts"
 
   def checkPage(): Unit =
     onPage(pageUrl)
 
   def reportableAccountsForCrsYes(): Unit = {
     onPage(pageUrl)
-    click(reportableAccountForCrsYesId)
+    click(yesRadioId)
     click(submitButtonId)
   }
 
   def reportableAccountsForCrsNo(): Unit = {
     onPage(pageUrl)
-    click(reportableAccountForCrsNoId)
+    click(noRadioId)
     click(submitButtonId)
   }
 }

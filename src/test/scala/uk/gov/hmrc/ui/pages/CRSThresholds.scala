@@ -16,26 +16,22 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
-
 object CRSThresholds extends BasePage {
 
-  override val pageUrl: String    = baseUrl + "/elections/crs/thresholds"
-  val applyingThresholdsYesId: By = By.id("value")
-  val applyingThresholdsNoId: By  = By.id("value-no")
+  override val pageUrl: String = baseUrl + "/elections/crs/thresholds"
 
   def checkPage(): Unit =
     onPage(pageUrl)
 
   def crsThresholdsYes(): Unit = {
     onPage(pageUrl)
-    click(applyingThresholdsYesId)
+    click(yesRadioId)
     click(submitButtonId)
   }
 
   def crsThresholdsNo(): Unit = {
     onPage(pageUrl)
-    click(applyingThresholdsNoId)
+    click(noRadioId)
     click(submitButtonId)
   }
 }

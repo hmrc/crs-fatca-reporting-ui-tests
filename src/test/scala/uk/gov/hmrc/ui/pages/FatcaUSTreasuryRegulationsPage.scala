@@ -16,26 +16,22 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
-
 object FatcaUSTreasuryRegulationsPage extends BasePage {
 
-  override val pageUrl: String             = baseUrl + "/elections/fatca/us-treasury-regulations"
-  val diligenceProceduresForFatcaYesId: By = By.id("value")
-  val diligenceProceduresForFatcaNoId: By  = By.id("value-no")
+  override val pageUrl: String = baseUrl + "/elections/fatca/us-treasury-regulations"
 
   def checkPage(): Unit =
     onPage(pageUrl)
 
   def FatcaUSTreasuryRegulationsYes(): Unit = {
     onPage(pageUrl)
-    click(diligenceProceduresForFatcaYesId)
+    click(yesRadioId)
     click(submitButtonId)
   }
 
   def FatcaUSTreasuryRegulationsNo(): Unit = {
     onPage(pageUrl)
-    click(diligenceProceduresForFatcaNoId)
+    click(noRadioId)
     click(submitButtonId)
   }
 }
