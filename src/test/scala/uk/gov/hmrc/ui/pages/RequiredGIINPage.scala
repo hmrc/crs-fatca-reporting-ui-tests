@@ -20,10 +20,10 @@ import org.openqa.selenium.By
 
 object RequiredGIINPage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "required-giin"
+  override val pageUrl: String = baseUrl + "/required-giin"
 
   val giin: By = By.id("value")
-  
+
   def enterGiin(): Unit = {
     onPage(pageUrl)
     sendKeys(giin, "98O96B.00000.LE.350")

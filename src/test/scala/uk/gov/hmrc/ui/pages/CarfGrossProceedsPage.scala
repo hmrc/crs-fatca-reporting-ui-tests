@@ -20,19 +20,19 @@ import org.openqa.selenium.By
 
 object CarfGrossProceedsPage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/elections/crs/carf-gross-proceeds"
+  override val pageUrl: String        = baseUrl + "/elections/crs/carf-gross-proceeds"
   val grossProceedsUnderCarfYesId: By = By.id("value")
-  val grossProceedsUnderCarfNoId: By = By.id("value-no")
-  
+  val grossProceedsUnderCarfNoId: By  = By.id("value-no")
+
   def checkPage(): Unit =
     onPage(pageUrl)
-    
+
   def grossProceedsUnderCarfYes(): Unit = {
     onPage(pageUrl)
     click(grossProceedsUnderCarfYesId)
     click(submitButtonId)
   }
-  
+
   def grossProceedsUnderCardNo(): Unit = {
     onPage(pageUrl)
     click(grossProceedsUnderCarfNoId)

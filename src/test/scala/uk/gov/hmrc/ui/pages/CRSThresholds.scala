@@ -20,20 +20,19 @@ import org.openqa.selenium.By
 
 object CRSThresholds extends BasePage {
 
+  override val pageUrl: String    = baseUrl + "/elections/crs/thresholds"
+  val applyingThresholdsYesId: By = By.id("value")
+  val applyingThresholdsNoId: By  = By.id("value-no")
 
-  override val pageUrl: String = baseUrl + "/elections/crs/thresholds"
-  val applyingThresholdsYesId: By  = By.id("value")
-  val applyingThresholdsNoId: By   = By.id("value-no")
-  
   def checkPage(): Unit =
     onPage(pageUrl)
-    
+
   def crsThresholdsYes(): Unit = {
     onPage(pageUrl)
     click(applyingThresholdsYesId)
     click(submitButtonId)
   }
-  
+
   def crsThresholdsNo(): Unit = {
     onPage(pageUrl)
     click(applyingThresholdsNoId)
