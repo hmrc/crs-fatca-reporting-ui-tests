@@ -18,7 +18,7 @@ package uk.gov.hmrc.ui.pages
 
 object UploadFilePage extends BasePage {
 
-  override val pageUrl: String = baseUrl
+  override val pageUrl: String = baseUrl + "/upload-file"
 
   def fileUpload(file: String): this.type = {
     onPage(pageUrl)

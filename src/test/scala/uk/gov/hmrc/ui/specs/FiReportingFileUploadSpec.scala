@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages._
+import uk.gov.hmrc.ui.pages.*
 import uk.gov.hmrc.ui.specs.tags.*
 
 class FiReportingFileUploadSpec extends BaseSpec {
@@ -36,10 +36,26 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Given("The User log in as an organisation")
       AuthLoginPage.loginAsOrganisationUser()
 
-      When("The user hits the uploading page and continues file upload journey")
+      When("The user hits the uploading page and continues CRS file upload journey")
       UploadFilePage
         .onPage()
-        .fileUpload("invalid-messagetype-crs-xml.xml")
+        .fileUpload("valid-crs-xml.xml")
+      ReportElectionsPage.makeElectionsYes()
+      CRSContractsPage.checkPage()
+
+    }
+
+    Scenario("Upload journey for Fi is user", ReportingTests, SoloTests) {
+      Given("The User log in as an organisation")
+      AuthLoginPage.loginAsOrganisationUser()
+
+      When("The user hits the uploading page and continues FATCA file upload journey")
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-fatca-xml.xml")
+      ReportElectionsPage.makeElectionsYes()
+      FatcaUSTreasuryRegulationsPage.checkPage()
+
     }
 
     Scenario("Upload Journey for Organisation CT user", ReportingTests, SoloTests) {
