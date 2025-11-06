@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.specs
 
-import uk.gov.hmrc.ui.pages._
+import uk.gov.hmrc.ui.pages.*
 import uk.gov.hmrc.ui.specs.tags.*
 
 class FiReportingFileUploadSpec extends BaseSpec {
@@ -32,14 +32,38 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
     }
 
-    Scenario("Upload Journey for Fi is user", ReportingTests, SoloTests) {
-      Given("The User log in as an organisation")
+    Scenario("Upload Journey for Fi is user CRS", ReportingTests, SoloTests) {
+      Given(
+        "The User logs in as an organisation"
+      )
       AuthLoginPage.loginAsOrganisationUser()
-
-      When("The user hits the uploading page and continues file upload journey")
+      When(
+        "The user hits the uploading page and submits a valid CRS XML file"
+      )
       UploadFilePage
         .onPage()
-        .fileUpload("invalid-messagetype-crs-xml.xml")
+        .fileUpload("valid-crs-xml.xml")
+      And("Continues the journey for any elections made already for the reporting period")
+      ReportElectionsPage.selectYesAndContinue()
+      And("Any contracts, dormant accounts and applying any thresholds from their reporting for CRS")
+      CRSContractsPage.checkPage()
+
+    }
+
+    Scenario("Upload journey for Fi is user FATCA", ReportingTests, SoloTests) {
+      Given(
+        "The User logs in as an organisation"
+      )
+      AuthLoginPage.loginAsOrganisationUser()
+      When(
+        "The user hits the uploading page and submits a valid FATCA XML file"
+      )
+      UploadFilePage.fileUpload("valid-fatca-xml.xml")
+      And("Continues the journey for any elections made already for the reporting period")
+      ReportElectionsPage.selectYesAndContinue()
+      And("US Treasury regulations and any thresholds for FATCA")
+      FatcaUSTreasuryRegulationsPage.checkPage()
+
     }
 
     Scenario("Upload Journey for Organisation CT user", ReportingTests, SoloTests) {
