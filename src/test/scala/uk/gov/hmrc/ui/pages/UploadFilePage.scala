@@ -21,7 +21,6 @@ object UploadFilePage extends BasePage {
   override val pageUrl: String = baseUrl + "/upload-file"
 
   def fileUpload(file: String): this.type = {
-    onPage(pageUrl)
     uploadAnyFile(file)
     click(submitButtonId)
     this

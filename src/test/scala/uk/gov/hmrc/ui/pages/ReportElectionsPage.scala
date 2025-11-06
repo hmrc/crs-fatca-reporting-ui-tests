@@ -20,16 +20,4 @@ object ReportElectionsPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/elections/report-elections"
 
-  def makeElectionsYes(): Unit = {
-    onPage(pageUrl)
-    click(yesRadioId)
-    click(submitButtonId)
-  }
-
-  def makeElectionsNo(): Unit = {
-    onPage(pageUrl)
-    click(noRadioId)
-    click(submitButtonId)
-  }
-
 }

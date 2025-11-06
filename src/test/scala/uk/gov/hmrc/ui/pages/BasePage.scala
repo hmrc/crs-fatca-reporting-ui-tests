@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.{By, WebDriver}
+import org.openqa.selenium.*
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
 import org.scalatest.Assertion
 import org.scalatest.matchers.should.Matchers
@@ -25,7 +25,6 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.driver.BrowserDriver
 import uk.gov.hmrc.ui.utils.IdGenerators
-import org.openqa.selenium.*
 
 import java.time.Duration
 
@@ -58,6 +57,18 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
 
   def submitOnPageById(): Unit = {
     onPage()
+    click(submitButtonId)
+  }
+
+  def selectYesAndContinue(): Unit = {
+    onPage(pageUrl)
+    click(yesRadioId)
+    click(submitButtonId)
+  }
+
+  def selectNoAndContinue(): Unit = {
+    onPage(pageUrl)
+    click(noRadioId)
     click(submitButtonId)
   }
 
