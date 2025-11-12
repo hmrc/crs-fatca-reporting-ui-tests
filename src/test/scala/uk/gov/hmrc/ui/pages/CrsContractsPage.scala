@@ -16,12 +16,8 @@
 
 package uk.gov.hmrc.ui.pages
 
-object InvalidMessageTypePage extends BasePage {
+object CrsContractsPage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/report/problem/invalid-messagetype"
+  override val pageUrl: String = baseUrl + "/elections/crs/contracts"
 
-  def checkPage(): this.type = {
-    onPage(pageUrl)
-    this
-  }
 }

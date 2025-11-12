@@ -16,23 +16,8 @@
 
 package uk.gov.hmrc.ui.pages
 
-object CRSContractsPage extends BasePage {
+object CrsThresholds extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/elections/crs/contracts"
-
-  def checkPage(): Unit =
-    onPage(pageUrl)
-
-  def crsContractsYes(): Unit = {
-    onPage(pageUrl)
-    click(yesRadioId)
-    click(submitButtonId)
-  }
-
-  def crsContractsNo(): Unit = {
-    onPage(pageUrl)
-    click(noRadioId)
-    click(submitButtonId)
-  }
+  override val pageUrl: String = baseUrl + "/elections/crs/thresholds"
 
 }

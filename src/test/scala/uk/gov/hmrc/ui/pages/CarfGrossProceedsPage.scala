@@ -20,18 +20,4 @@ object CarfGrossProceedsPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/elections/crs/carf-gross-proceeds"
 
-  def checkPage(): Unit =
-    onPage(pageUrl)
-
-  def grossProceedsUnderCarfYes(): Unit = {
-    onPage(pageUrl)
-    click(yesRadioId)
-    click(submitButtonId)
-  }
-
-  def grossProceedsUnderCardNo(): Unit = {
-    onPage(pageUrl)
-    click(noRadioId)
-    click(submitButtonId)
-  }
 }

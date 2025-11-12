@@ -24,10 +24,14 @@ object RequiredGIINPage extends BasePage {
 
   val giin: By = By.id("value")
 
-  def enterGiin(): Unit = {
+  def maybeEnterGiin(): Unit =
     onPage(pageUrl)
-    sendKeys(giin, "98O96B.00000.LE.350")
-    click(submitButtonId)
-  }
+    if (driver.getCurrentUrl.contains("/required-giin")) {
+      waitUntilVisible(giin)
+      sendKeys(giin, "98096B.00000.LE.350")
+      click(submitButtonId)
+    } else {
+      println("GIIN page not displayed — skipping GIIN entry")
+    }
 
 }

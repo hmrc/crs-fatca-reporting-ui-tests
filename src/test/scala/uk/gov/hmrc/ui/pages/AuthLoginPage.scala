@@ -36,21 +36,10 @@ object AuthLoginPage extends BasePage {
   private val enrolmentIdentifierById: By      = By.id("input-0-0-name")
   private val enrolmentValueById: By           = By.id("input-0-0-value")
 
-  private val presetDropDownById: By    = By.id("presets-dropdown")
-  private val presetSubmitById: By      = By.id("add-preset")
-  private val identifierCTField: By     = By.id("input-4-0-value")
-  private val identifierCTValue: String = generateUtr(validCtUtr)
-
   def loadPage(): this.type = {
     get(pageUrl)
     onPage(pageUrl)
     this
-  }
-
-  private def addCtPreset(): Unit = {
-    selectByVisibleText(presetDropDownById, "CT")
-    click(presetSubmitById)
-    sendKeys(identifierCTField, identifierCTValue)
   }
 
   def loginAsBasic(): this.type = {
@@ -70,7 +59,6 @@ object AuthLoginPage extends BasePage {
     sendKeys(enrolmentKeyById, organisationEnrolment.key)
     sendKeys(enrolmentIdentifierById, organisationEnrolment.identifier)
     sendKeys(enrolmentValueById, organisationEnrolment.value)
-    addCtPreset()
     click(authSubmitById)
     this
   }
@@ -82,7 +70,6 @@ object AuthLoginPage extends BasePage {
     sendKeys(enrolmentKeyById, autoMatchedEnrolment.key)
     sendKeys(enrolmentIdentifierById, autoMatchedEnrolment.identifier)
     sendKeys(enrolmentValueById, autoMatchedEnrolment.value)
-    addCtPreset()
     click(authSubmitById)
     this
   }

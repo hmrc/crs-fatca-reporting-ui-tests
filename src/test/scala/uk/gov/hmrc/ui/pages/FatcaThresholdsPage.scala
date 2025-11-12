@@ -20,18 +20,4 @@ object FatcaThresholdsPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/elections/fatca/thresholds"
 
-  def checkPage(): Unit = {
-    onPage(pageUrl)
-
-    def fatcaThresholdsYes(): Unit = {
-      onPage(pageUrl)
-      click(yesRadioId)
-      click(submitButtonId)
-    }
-    def fatcaThresholdsNo(): Unit  = {
-      onPage(pageUrl)
-      click(noRadioId)
-      click(submitButtonId)
-    }
-  }
 }

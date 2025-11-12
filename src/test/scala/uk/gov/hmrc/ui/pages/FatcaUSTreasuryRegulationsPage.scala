@@ -20,18 +20,4 @@ object FatcaUSTreasuryRegulationsPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/elections/fatca/us-treasury-regulations"
 
-  def checkPage(): Unit =
-    onPage(pageUrl)
-
-  def FatcaUSTreasuryRegulationsYes(): Unit = {
-    onPage(pageUrl)
-    click(yesRadioId)
-    click(submitButtonId)
-  }
-
-  def FatcaUSTreasuryRegulationsNo(): Unit = {
-    onPage(pageUrl)
-    click(noRadioId)
-    click(submitButtonId)
-  }
 }
