@@ -20,18 +20,4 @@ object CrsGrossProceedsPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/elections/crs/gross-proceeds"
 
-  def checkPage(): Unit =
-    onPage(pageUrl)
-
-  def reportingUnderCrsYes(): Unit = {
-    onPage(pageUrl)
-    click(yesRadioId)
-    click(submitButtonId)
-  }
-
-  def reportingUnderCrsNo(): Unit = {
-    onPage(pageUrl)
-    click(noRadioId)
-    click(submitButtonId)
-  }
 }

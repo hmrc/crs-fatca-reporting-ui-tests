@@ -25,6 +25,7 @@ object RequiredGIINPage extends BasePage {
   val giin: By = By.id("value")
 
   def maybeEnterGiin(): Unit =
+    onPage(pageUrl)
     if (driver.getCurrentUrl.contains("/required-giin")) {
       waitUntilVisible(giin)
       sendKeys(giin, "98096B.00000.LE.350")

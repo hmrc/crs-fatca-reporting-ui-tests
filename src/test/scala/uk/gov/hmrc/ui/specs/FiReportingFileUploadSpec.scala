@@ -42,7 +42,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       And("Continues the journey for any elections made already for the reporting period")
       ReportElectionsPage.selectYesAndContinue()
       And("Any contracts, dormant accounts and applying any thresholds from their reporting for CRS")
-      CRSContractsPage.checkPage()
+      CrsContractsPage.onPage()
 
     }
 
@@ -56,7 +56,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       And("Continues the journey for any elections made already for the reporting period")
       ReportElectionsPage.selectYesAndContinue()
       And("US Treasury regulations and any thresholds for FATCA")
-      FatcaUSTreasuryRegulationsPage.checkPage()
+      FatcaUSTreasuryRegulationsPage.onPage()
 
     }
   }
