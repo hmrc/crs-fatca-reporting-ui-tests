@@ -78,10 +78,14 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   def uploadAnyFile(file: String): this.type = {
     if (file.nonEmpty) {
       val filePath      = s"${System.getProperty("user.dir")}/src/test/resources/files/$file"
+      fluentWait.until(ExpectedConditions.presenceOfElementLocated(fileUploadId))
       val uploadElement = driver.findElement(fileUploadId)
       uploadElement.sendKeys(filePath)
     }
     this
   }
+
+  def waitUntilVisible(locator: By): Unit =
+    fluentWait.until(ExpectedConditions.visibilityOfElementLocated(locator))
 
 }
