@@ -42,7 +42,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       And("Continues the journey for any elections made already for the reporting period")
       ReportElectionsPage.selectYesAndContinue()
       And("Any contracts, dormant accounts and applying any thresholds from their reporting for CRS")
-      CrsContractsPage.onPage()
+      CrsContractsPage.selectYesAndContinue()
 
     }
 
