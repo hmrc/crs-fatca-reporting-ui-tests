@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.pages
 
-object CrsThresholds extends BasePage {
+object CrsThresholdsPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/elections/crs/thresholds"
 
