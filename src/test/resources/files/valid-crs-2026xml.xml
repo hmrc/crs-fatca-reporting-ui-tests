@@ -9,7 +9,7 @@
         <crs:Contact>a</crs:Contact>
         <crs:MessageRefId>GB2013CA123456789</crs:MessageRefId>
         <crs:MessageTypeIndic>CRS701</crs:MessageTypeIndic>
-        <crs:ReportingPeriod>2015-08-13</crs:ReportingPeriod>
+        <crs:ReportingPeriod>2026-08-13</crs:ReportingPeriod>
         <crs:Timestamp>2014-12-17T09:30:47Z</crs:Timestamp>
     </crs:MessageSpec>
     <crs:CrsBody>
