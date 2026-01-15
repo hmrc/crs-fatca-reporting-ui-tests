@@ -93,7 +93,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       When("The user hits the uploading page and submits a valid FATCA XML file")
       UploadFilePage
         .onPage()
-        .fileUpload("valid-fatca-2026xml.xml")
+        .fileUpload("valid-fatca-2006xml.xml")
       And("the user provides the GIIN if required")
       RequiredGIINPage.maybeEnterGiin()
       And("Continues the journey to Check your file details page")
