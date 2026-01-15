@@ -45,6 +45,23 @@ class FiReportingFileUploadSpec extends BaseSpec {
       CrsContractsPage.selectYesAndContinue()
       CrsDormantAccountsPage.selectYesAndContinue()
       CrsThresholdsPage.selectYesAndContinue()
+      CheckYourFileDetailsPage.onPage()
+
+    }
+
+    Scenario(
+      "Upload journey for Fi is user CRS and the reporting period is not within CY-12 and CY",
+      ReportingTests,
+      SoloTests
+    ) {
+      Given("The User logs in as an organisation")
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid CRS XML file")
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-crs-2026xml.xml")
+      And("Continues the journey to Check your file details page")
+      CheckYourFileDetailsPage.onPage()
 
     }
 
@@ -52,7 +69,9 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Given("The User logs in as an organisation")
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid FATCA XML file")
-      UploadFilePage.fileUpload("valid-fatca-xml-fiWithoutGIIN.xml")
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-fatca-xml-fiWithoutGIIN.xml")
       Then("The user provides the GIIN if required")
       RequiredGIINPage.maybeEnterGiin()
       And("Continues the journey for any elections made already for the reporting period")
@@ -62,6 +81,23 @@ class FiReportingFileUploadSpec extends BaseSpec {
       FatcaThresholdsPage.selectYesAndContinue()
       CheckYourFileDetailsPage.onPage()
 
+    }
+
+    Scenario(
+      "Upload journey for Fi is user FATCA and the reporting period is not within CY-12 and CY",
+      ReportingTests,
+      SoloTests
+    ) {
+      Given("The User logs in as an orgnisation")
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid FATCA XML file")
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-fatca-2006xml.xml")
+      And("the user provides the GIIN if required")
+      RequiredGIINPage.maybeEnterGiin()
+      And("Continues the journey to Check your file details page")
+      CheckYourFileDetailsPage.onPage()
     }
   }
 }
