@@ -14,10 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.utils
 
-object CheckYourFileDetailsPage extends BasePage {
+import uk.gov.hmrc.ui.mongo.*
 
-  override val pageUrl: String = baseUrl + "/check-your-file-details"
+trait MongoTestUtils {
 
+  val databaseName = "crs-fatca-reporting-frontend"
+  val userAnswers   = "user-answers"
+
+  def cleanUserAnswersCollection(): Unit =
+    MongoService.dropMongoCollection(databaseName, userAnswers)
+
+  def dropCollection(collectionName: String): Unit =
+    MongoService.dropMongoCollection(databaseName, collectionName)
 }

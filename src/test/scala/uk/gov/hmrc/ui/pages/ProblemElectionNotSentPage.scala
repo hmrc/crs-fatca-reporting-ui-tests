@@ -16,8 +16,8 @@
 
 package uk.gov.hmrc.ui.pages
 
-object CheckYourFileDetailsPage extends BasePage {
+object ProblemElectionNotSentPage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/check-your-file-details"
+  override val pageUrl: String = baseUrl + "/problem/elections-not-sent"
 
 }

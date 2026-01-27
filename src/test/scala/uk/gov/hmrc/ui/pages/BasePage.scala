@@ -42,7 +42,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   val noRadioId: By      = By.id("value-no")
 
   private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
-    .withTimeout(Duration.ofSeconds(2))
+    .withTimeout(Duration.ofSeconds(15))
     .pollingEvery(Duration.ofMillis(200))
 
   def onPage(url: String = this.pageUrl): this.type = {
@@ -55,9 +55,10 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(backLinkText)
   }
 
-  def submitOnPageById(): Unit = {
-    onPage()
+  def submitPage(): this.type = {
+    onPage(pageUrl)
     click(submitButtonId)
+    this
   }
 
   def selectYesAndContinue(): Unit = {
@@ -87,5 +88,15 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
 
   def waitUntilVisible(locator: By): Unit =
     fluentWait.until(ExpectedConditions.visibilityOfElementLocated(locator))
+
+  def waitWith(timeoutSeconds: Int): FluentWait[WebDriver] =
+    new FluentWait[WebDriver](Driver.instance)
+      .withTimeout(Duration.ofSeconds(timeoutSeconds))
+      .pollingEvery(Duration.ofMillis(200))
+
+  def waitForSpinnerCycle(timeoutSeconds: Int = 30): Unit = {
+    val spinner = By.cssSelector("svg.ccms-loader")
+    waitWith(timeoutSeconds).until(ExpectedConditions.invisibilityOfElementLocated(spinner))
+  }
 
 }
