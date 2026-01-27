@@ -1,4 +1,20 @@
 /*
+ * Copyright 2026 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
  * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,34 +34,33 @@ package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.*
 import uk.gov.hmrc.ui.specs.tags.*
+import uk.gov.hmrc.ui.utils.MongoTestUtils
 
-class FiReportingFileUploadSpec extends BaseSpec {
+class FiReportingFileUploadSpec extends BaseSpec with MongoTestUtils {
 
   Feature("Upload File Journey") {
 
     Scenario("Upload Journey (Standard FI)", ReportingTests, SoloTests) {
-      Given("The user logs in as an individual")
-      AuthLoginPage.loginAsBasic()
 
-      When("The user hits the uploading page and continues file upload journey")
-      UploadFilePage.onPage()
+      Given("Mongo is clean")
+      cleanUserAnswersCollection()
 
-    }
-
-    Scenario("Upload Journey for Fi is user CRS", ReportingTests, SoloTests) {
-      Given("The User logs in as an organisation")
+      And("The User logs in as an organisation")
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid CRS XML file")
       UploadFilePage
         .onPage()
         .fileUpload("valid-crs-xml.xml")
-      And("Continues the journey for any elections made already for the reporting period")
+      And("They choose to send elections for the reporting period")
       ReportElectionsPage.selectYesAndContinue()
-      And("Any contracts, dormant accounts and applying any thresholds from their reporting for CRS")
+
+      And("They answer the CRS questions (contracts, dormant accounts, thresholds)")
       CrsContractsPage.selectYesAndContinue()
       CrsDormantAccountsPage.selectYesAndContinue()
       CrsThresholdsPage.selectYesAndContinue()
-      CheckYourFileDetailsPage.onPage()
+
+      Then("They continue from the Check your file details page")
+      CheckYourFileDetailsPage.submitPage()
 
     }
 
@@ -54,7 +69,11 @@ class FiReportingFileUploadSpec extends BaseSpec {
       ReportingTests,
       SoloTests
     ) {
-      Given("The User logs in as an organisation")
+
+      Given("Mongo is clean")
+      cleanUserAnswersCollection()
+
+      And("The User logs in as an organisation")
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid CRS XML file")
       UploadFilePage
@@ -66,7 +85,11 @@ class FiReportingFileUploadSpec extends BaseSpec {
     }
 
     Scenario("Upload journey for Fi is user FATCA", ReportingTests, SoloTests) {
-      Given("The User logs in as an organisation")
+
+      Given("Mongo is clean")
+      cleanUserAnswersCollection()
+
+      And("The User logs in as an organisation")
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid FATCA XML file")
       UploadFilePage
@@ -79,7 +102,8 @@ class FiReportingFileUploadSpec extends BaseSpec {
       And("US Treasury regulations and any thresholds for FATCA")
       FatcaUSTreasuryRegulationsPage.selectYesAndContinue()
       FatcaThresholdsPage.selectYesAndContinue()
-      CheckYourFileDetailsPage.onPage()
+      Then("The user can review their file details and continue")
+      CheckYourFileDetailsPage.submitPage()
 
     }
 
@@ -88,7 +112,10 @@ class FiReportingFileUploadSpec extends BaseSpec {
       ReportingTests,
       SoloTests
     ) {
-      Given("The User logs in as an orgnisation")
+      Given("Mongo is clean")
+      cleanUserAnswersCollection()
+
+      And("The User logs in as an orgnisation")
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid FATCA XML file")
       UploadFilePage
