@@ -37,7 +37,7 @@ import uk.gov.hmrc.ui.mongo.CrsFatcaSubmissionStatusHelper
 import uk.gov.hmrc.ui.specs.tags.*
 import uk.gov.hmrc.ui.utils.MongoTestUtils
 
-class FiReportingProblemGiinNotSentSpec extends BaseSpec with MongoTestUtils {
+class FiReportingProblemGiinNotSentSpec extends BaseSpec {
 
   Feature("FI Reporting - GIIN not sent problem page") {
 

@@ -32,22 +32,17 @@
 
 package uk.gov.hmrc.ui.specs
 
+import org.scalatest.BeforeAndAfterEach
 import uk.gov.hmrc.ui.pages.*
 import uk.gov.hmrc.ui.specs.tags.*
 import uk.gov.hmrc.ui.utils.MongoTestUtils
 
-class FiReportingFileUploadSpec extends BaseSpec with MongoTestUtils {
+class FiReportingFileUploadSpec extends BaseSpec {
 
   Feature("Upload File Journey") {
 
     Scenario("Upload Journey (Standard FI)", ReportingTests, SoloTests) {
 
-      Given("Mongo is clean")
-      cleanUserAnswersCollection()
-
-      And("The User logs in as an organisation")
-      AuthLoginPage.loginAsOrganisationUser()
-      When("The user hits the uploading page and submits a valid CRS XML file")
       UploadFilePage
         .onPage()
         .fileUpload("valid-crs-xml.xml")
@@ -69,13 +64,6 @@ class FiReportingFileUploadSpec extends BaseSpec with MongoTestUtils {
       ReportingTests,
       SoloTests
     ) {
-
-      Given("Mongo is clean")
-      cleanUserAnswersCollection()
-
-      And("The User logs in as an organisation")
-      AuthLoginPage.loginAsOrganisationUser()
-      When("The user hits the uploading page and submits a valid CRS XML file")
       UploadFilePage
         .onPage()
         .fileUpload("valid-crs-2026xml.xml")
@@ -85,13 +73,6 @@ class FiReportingFileUploadSpec extends BaseSpec with MongoTestUtils {
     }
 
     Scenario("Upload journey for Fi is user FATCA", ReportingTests, SoloTests) {
-
-      Given("Mongo is clean")
-      cleanUserAnswersCollection()
-
-      And("The User logs in as an organisation")
-      AuthLoginPage.loginAsOrganisationUser()
-      When("The user hits the uploading page and submits a valid FATCA XML file")
       UploadFilePage
         .onPage()
         .fileUpload("valid-fatca-xml-fiWithoutGIIN.xml")
@@ -104,6 +85,8 @@ class FiReportingFileUploadSpec extends BaseSpec with MongoTestUtils {
       FatcaThresholdsPage.selectYesAndContinue()
       Then("The user can review their file details and continue")
       CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      StillCheckingYourFilePage.onPage()
 
     }
 
@@ -112,12 +95,6 @@ class FiReportingFileUploadSpec extends BaseSpec with MongoTestUtils {
       ReportingTests,
       SoloTests
     ) {
-      Given("Mongo is clean")
-      cleanUserAnswersCollection()
-
-      And("The User logs in as an orgnisation")
-      AuthLoginPage.loginAsOrganisationUser()
-      When("The user hits the uploading page and submits a valid FATCA XML file")
       UploadFilePage
         .onPage()
         .fileUpload("valid-fatca-2006xml.xml")
