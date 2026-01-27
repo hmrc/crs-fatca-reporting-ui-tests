@@ -54,10 +54,8 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec with MongoTestUtils {
 
       RequiredGIINPage.maybeEnterGiin()
 
-      /**
-       * The code below is for the election send journey.
-       * This will be implemented as part of ticket DAC6-3830.
-       */
+      /** The code below is for the election send journey. This will be implemented as part of ticket DAC6-3830.
+        */
 
 //      And("They choose to send elections")
 //      ReportElectionsPage.selectYesAndContinue()

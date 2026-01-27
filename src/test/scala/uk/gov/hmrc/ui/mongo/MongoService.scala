@@ -32,7 +32,7 @@ object MongoService {
 
   def dropMongoCollection(dbName: String, collectionName: String): Unit = {
     val mongoClient: MongoClient = MongoClient()
-    try {
+    try
       Await.result(
         mongoClient
           .getDatabase(dbName)
@@ -41,9 +41,8 @@ object MongoService {
           .head(),
         timeout
       )
-    } finally {
+    finally
       mongoClient.close()
-    }
   }
 
   def getCollectionData(dbName: String, collectionName: String): Document = {
@@ -60,20 +59,19 @@ object MongoService {
     retrievedRecord
   }
 
-
   def setField(dbName: String, collection: String, id: String, fieldPath: String, value: Any): Unit = {
     val mongoClient: MongoClient = MongoClient()
 
     val query = Filters.eq("_id", id)
 
     val bsonValue: BsonValue = value match {
-      case b: Boolean => BsonBoolean(b)
-      case s: String  => BsonString(s)
-      case i: Int     => BsonInt32(i)
-      case l: Long    => BsonInt64(l)
-      case d: Double  => BsonDouble(d)
+      case b: Boolean    => BsonBoolean(b)
+      case s: String     => BsonString(s)
+      case i: Int        => BsonInt32(i)
+      case l: Long       => BsonInt64(l)
+      case d: Double     => BsonDouble(d)
       case bd: BsonValue => bd
-      case other      => BsonString(other.toString)
+      case other         => BsonString(other.toString)
     }
 
     val update = Updates.set(fieldPath, bsonValue)

@@ -38,9 +38,8 @@ object CrsFatcaSubmissionStatusHelper {
   def setRequiresElections(required: Boolean): Unit =
     MongoService.setField(database, collection, journeyId, "data.requiresElections", required)
 
-  /**
-   * presets matching journey-map variants
-   */
+  /** presets matching journey-map variants
+    */
   def giinFailedElectionsSent(): Unit = {
     setGiinSent(false)
     setRequiresElections(true)
@@ -49,8 +48,8 @@ object CrsFatcaSubmissionStatusHelper {
 
   def giinFailedNoElectionsSent(): Unit = {
     setGiinSent(false)
-    setRequiresElections(false) 
-    setElectionsSent(false)     
+    setRequiresElections(false)
+    setElectionsSent(false)
   }
 
   def giinFailedElectionsFailed(): Unit = {

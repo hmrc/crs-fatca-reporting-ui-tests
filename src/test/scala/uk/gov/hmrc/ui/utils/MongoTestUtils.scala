@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.mongo.*
 trait MongoTestUtils {
 
   val databaseName = "crs-fatca-reporting-frontend"
-  val userAnswers   = "user-answers"
+  val userAnswers  = "user-answers"
 
   def cleanUserAnswersCollection(): Unit =
     MongoService.dropMongoCollection(databaseName, userAnswers)

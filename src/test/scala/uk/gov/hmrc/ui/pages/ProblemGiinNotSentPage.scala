@@ -45,10 +45,9 @@ object ProblemGiinNotSentPage extends BasePage {
 
   def assertPageIsDisplayed(): Unit = {
     onPage()
-    heading shouldBe "We’re unable to receive your file"
-    backLinkIsPresent shouldBe false
+    heading            shouldBe "We’re unable to receive your file"
+    backLinkIsPresent  shouldBe false
     warningTextPresent shouldBe true
-    warningText should include(
-      "You must send your file later to complete the reporting process.")
+    warningText          should include("You must send your file later to complete the reporting process.")
   }
 }
