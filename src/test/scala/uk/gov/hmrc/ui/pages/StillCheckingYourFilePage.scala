@@ -19,5 +19,5 @@ package uk.gov.hmrc.ui.pages
 object StillCheckingYourFilePage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/still-checking-your-file"
-  
+
 }
