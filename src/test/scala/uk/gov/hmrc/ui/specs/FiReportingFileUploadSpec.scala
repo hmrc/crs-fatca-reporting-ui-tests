@@ -42,6 +42,8 @@ class FiReportingFileUploadSpec extends BaseSpec {
   Feature("Upload File Journey") {
 
     Scenario("Upload Journey (Standard FI)", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
 
       UploadFilePage
         .onPage()
@@ -64,6 +66,8 @@ class FiReportingFileUploadSpec extends BaseSpec {
       ReportingTests,
       SoloTests
     ) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
         .onPage()
         .fileUpload("valid-crs-2026xml.xml")
@@ -73,6 +77,8 @@ class FiReportingFileUploadSpec extends BaseSpec {
     }
 
     Scenario("Upload journey for Fi is user FATCA", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
         .onPage()
         .fileUpload("valid-fatca-xml-fiWithoutGIIN.xml")
@@ -95,6 +101,8 @@ class FiReportingFileUploadSpec extends BaseSpec {
       ReportingTests,
       SoloTests
     ) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
         .onPage()
         .fileUpload("valid-fatca-2006xml.xml")

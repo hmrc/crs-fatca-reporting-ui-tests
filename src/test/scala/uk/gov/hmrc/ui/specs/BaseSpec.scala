@@ -36,10 +36,6 @@ trait BaseSpec
   def commonJourneySetUp(): Unit = {
     Given("Mongo is clean")
     cleanUserAnswersCollection()
-
-    And("The User logs in as an organisation")
-    AuthLoginPage.loginAsOrganisationUser()
-    When("The user hits the uploading page and submits a valid XML file")
   }
 
   override def beforeEach(): Unit = {

@@ -26,6 +26,8 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
   Feature("FI Reporting - Upload and problem pages") {
 
     Scenario("CRS file submission shows elections-not-sent problem page", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
 
       UploadFilePage
         .onPage()
@@ -43,6 +45,8 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
     }
 
     Scenario("FATCA file submission shows elections-not-sent problem page", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
 
       UploadFilePage
         .onPage()
