@@ -16,10 +16,8 @@
 
 package uk.gov.hmrc.ui.specs
 
-import org.scalatest.BeforeAndAfterEach
 import uk.gov.hmrc.ui.pages.*
 import uk.gov.hmrc.ui.specs.tags.*
-import uk.gov.hmrc.ui.utils.MongoTestUtils
 
 class FiReportingProblemElectionNotSentSpec extends BaseSpec {
 

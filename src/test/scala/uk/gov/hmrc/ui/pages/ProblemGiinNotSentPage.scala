@@ -23,16 +23,25 @@ object ProblemGiinNotSentPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/problem/giin-not-sent"
 
-  private val headingSelector     = By.cssSelector("h1.govuk-heading-l")
-  private val bodySelector        = By.cssSelector("p.govuk-body")
+  private val headingSelector     = By.cssSelector("#main-content h1.govuk-heading-l")
+  private val bodySelector        = By.cssSelector("#main-content p.govuk-body")
   private val backLinkSelector    = By.cssSelector(".govuk-back-link")
-  private val warningTextSelector = By.cssSelector(".govuk-warning-text")
+  private val warningTextSelector = By.cssSelector("#main-content .govuk-warning-text")
+
+  val electionsSentPhrase: String =
+    "We have received the elections for this financial institution, but have not been able to receive the GIIN. We need the GIIN to receive your file."
+
+  val electionsNotProvidedPhrase: String =
+    "We have not been able to receive the GIIN for this financial institution. We need the GIIN to receive your file."
+
+  val electionsFailedTooPhrase: String =
+    "We have not been able to receive the GIIN or elections for this financial institution. We need the GIIN to receive your file."
 
   def heading: String =
     Driver.instance.findElement(headingSelector).getText.trim
 
   def bodyText: String =
-    Driver.instance.findElement(bodySelector).getText
+    Driver.instance.findElement(bodySelector).getText.trim
 
   def backLinkIsPresent: Boolean =
     !Driver.instance.findElements(backLinkSelector).isEmpty
@@ -50,4 +59,20 @@ object ProblemGiinNotSentPage extends BasePage {
     warningTextPresent shouldBe true
     warningText          should include("You must send your file later to complete the reporting process.")
   }
+
+  def assertElectionsSentVariant(): Unit = {
+    assertPageIsDisplayed()
+    bodyText should include(electionsSentPhrase)
+  }
+
+  def assertElectionsNotProvidedVariant(): Unit = {
+    assertPageIsDisplayed()
+    bodyText should include(electionsNotProvidedPhrase)
+  }
+
+  def assertElectionsFailedTooVariant(): Unit = {
+    assertPageIsDisplayed()
+    bodyText should include(electionsFailedTooPhrase)
+  }
+
 }
