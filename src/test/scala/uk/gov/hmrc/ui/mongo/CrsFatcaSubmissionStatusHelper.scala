@@ -20,6 +20,10 @@ import uk.gov.hmrc.ui.mongo
 
 object CrsFatcaSubmissionStatusHelper {
 
+  /** Helper for forcing post-submission states in Mongo for UI tests. Use only where the state cannot be reached
+    * reliably via stubs/UI journey.
+    */
+
   private val database   = "crs-fatca-reporting-frontend"
   private val collection = "user-answers"
 
@@ -38,23 +42,7 @@ object CrsFatcaSubmissionStatusHelper {
   def setRequiresElections(required: Boolean): Unit =
     MongoService.setField(database, collection, journeyId, "data.requiresElections", required)
 
-  /** presets matching journey-map variants
-    */
-  def giinFailedElectionsSent(): Unit = {
-    setGiinSent(false)
-    setRequiresElections(true)
-    setElectionsSent(true)
-  }
+  def setElectionsProvided(provided: Boolean): Unit =
+    MongoService.setField(database, collection, journeyId, "data.electionsProvided", provided)
 
-  def giinFailedNoElectionsSent(): Unit = {
-    setGiinSent(false)
-    setRequiresElections(false)
-    setElectionsSent(false)
-  }
-
-  def giinFailedElectionsFailed(): Unit = {
-    setGiinSent(false)
-    setRequiresElections(true)
-    setElectionsSent(false)
-  }
 }

@@ -14,28 +14,10 @@
  * limitations under the License.
  */
 
-/*
- * Copyright 2026 HM Revenue & Customs
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package uk.gov.hmrc.ui.specs
 
 import uk.gov.hmrc.ui.pages.*
-import uk.gov.hmrc.ui.mongo.CrsFatcaSubmissionStatusHelper
 import uk.gov.hmrc.ui.specs.tags.*
-import uk.gov.hmrc.ui.utils.MongoTestUtils
 
 class FiReportingProblemGiinNotSentSpec extends BaseSpec {
 
@@ -43,42 +25,85 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec {
 
     Scenario("GIIN not sent - elections sent successfully", ReportingTests, SoloTests) {
 
-      Given("Mongo is clean")
-      cleanUserAnswersCollection()
-
       And("The user logs in as an organisation")
       AuthLoginPage.loginAsAutoMatchedUser()
 
       When("The user uploads a valid CRS XML file")
-      UploadFilePage.onPage().fileUpload("valid-fatca-giin-not-sent-xml.xml")
+      UploadFilePage.onPage().fileUpload("valid-fatca-giin-not-sent-election-sent-and-election-not-provided.xml")
 
+      And("They enter a GIIN if prompted")
       RequiredGIINPage.maybeEnterGiin()
 
-      /** The code below is for the election send journey. This will be implemented as part of ticket DAC6-3830.
-        */
+      And("They choose to send elections for the reporting period")
+      ReportElectionsPage.selectYesAndContinue()
 
-//      And("They choose to send elections")
-//      ReportElectionsPage.selectYesAndContinue()
-//
-//      And("They answer CRS questions")
-//      CrsContractsPage.selectYesAndContinue()
-//      CrsDormantAccountsPage.selectYesAndContinue()
-//      CrsThresholdsPage.selectYesAndContinue()
+      And("They answer the FATCA questions (US treasury regulations and thresholds)")
+      FatcaUSTreasuryRegulationsPage.selectYesAndContinue()
+      FatcaThresholdsPage.selectYesAndContinue()
 
       And("They continue from Check your file details")
       CheckYourFileDetailsPage.submitPage()
-
-      And("GIIN fails but elections are recorded as sent")
-      CrsFatcaSubmissionStatusHelper.giinFailedElectionsSent()
 
       And("They confirm and send the file")
       SendYourFilePage.submitFileForValidation()
 
       Then("The GIIN not sent problem page is displayed with elections-sent content")
       ProblemGiinNotSentPage.onPage()
-      ProblemGiinNotSentPage.assertPageIsDisplayed()
-
+      ProblemGiinNotSentPage.assertElectionsSentVariant()
     }
 
+    Scenario("GIIN not sent - elections not provided", ReportingTests, SoloTests) {
+
+      And("The user logs in as an organisation")
+      AuthLoginPage.loginAsAutoMatchedUser()
+
+      When("The user uploads a valid CRS XML file")
+      UploadFilePage.onPage().fileUpload("valid-fatca-giin-not-sent-election-sent-and-election-not-provided.xml")
+
+      And("They enter a GIIN if prompted")
+      RequiredGIINPage.maybeEnterGiin()
+
+      And("They choose not to send elections for the reporting period")
+      ReportElectionsPage.selectNoAndContinue()
+
+      And("They continue from Check your file details")
+      CheckYourFileDetailsPage.submitPage()
+
+      And("They confirm and send the file")
+      SendYourFilePage.submitFileForValidation()
+
+      Then("The GIIN not sent problem page is displayed with elections-not-provided content")
+      ProblemGiinNotSentPage.onPage()
+      ProblemGiinNotSentPage.assertElectionsNotProvidedVariant()
+    }
+
+    Scenario("GIIN not sent - elections failed", ReportingTests, SoloTests) {
+
+      And("The user logs in as an organisation")
+      AuthLoginPage.loginAsAutoMatchedUser()
+
+      When("The user uploads a valid CRS XML file")
+      UploadFilePage.onPage().fileUpload("valid-fatca-giin-not-sent-election-failed.xml")
+
+      And("They enter a GIIN if prompted")
+      RequiredGIINPage.maybeEnterGiin()
+
+      And("They choose to send elections for the reporting period")
+      ReportElectionsPage.selectYesAndContinue()
+
+      And("They answer the FATCA questions (US treasury regulations and thresholds)")
+      FatcaUSTreasuryRegulationsPage.selectYesAndContinue()
+      FatcaThresholdsPage.selectYesAndContinue()
+
+      And("They continue from Check your file details")
+      CheckYourFileDetailsPage.submitPage()
+
+      And("They confirm and send the file")
+      SendYourFilePage.submitFileForValidation()
+
+      Then("The GIIN not sent problem page is displayed with elections-failed-too content")
+      ProblemGiinNotSentPage.onPage()
+      ProblemGiinNotSentPage.assertElectionsFailedTooVariant()
+    }
   }
 }
