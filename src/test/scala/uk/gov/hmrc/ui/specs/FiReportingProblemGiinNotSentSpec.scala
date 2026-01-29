@@ -25,7 +25,7 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec {
 
     Scenario("GIIN not sent - elections sent successfully", ReportingTests, SoloTests) {
 
-      And("The user logs in as an organisation")
+      And("The user logs in as an auto matched user")
       AuthLoginPage.loginAsAutoMatchedUser()
 
       When("The user uploads a valid CRS XML file")
@@ -54,7 +54,7 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec {
 
     Scenario("GIIN not sent - elections not provided", ReportingTests, SoloTests) {
 
-      And("The user logs in as an organisation")
+      And("The user logs in as an auto matched user")
       AuthLoginPage.loginAsAutoMatchedUser()
 
       When("The user uploads a valid CRS XML file")
@@ -79,7 +79,7 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec {
 
     Scenario("GIIN not sent - elections failed", ReportingTests, SoloTests) {
 
-      And("The user logs in as an organisation")
+      And("The user logs in as an auto matched user")
       AuthLoginPage.loginAsAutoMatchedUser()
 
       When("The user uploads a valid CRS XML file")

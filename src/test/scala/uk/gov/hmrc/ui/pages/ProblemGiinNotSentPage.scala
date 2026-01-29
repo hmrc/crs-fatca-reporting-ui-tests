@@ -37,6 +37,9 @@ object ProblemGiinNotSentPage extends BasePage {
   val electionsFailedTooPhrase: String =
     "We have not been able to receive the GIIN or elections for this financial institution. We need the GIIN to receive your file."
 
+  val expectedWarningText: String =
+    "You must send your file later to complete the reporting process."
+
   def heading: String =
     Driver.instance.findElement(headingSelector).getText.trim
 
@@ -57,7 +60,7 @@ object ProblemGiinNotSentPage extends BasePage {
     heading            shouldBe "We’re unable to receive your file"
     backLinkIsPresent  shouldBe false
     warningTextPresent shouldBe true
-    warningText          should include("You must send your file later to complete the reporting process.")
+    warningText          should include(expectedWarningText)
   }
 
   def assertElectionsSentVariant(): Unit = {
