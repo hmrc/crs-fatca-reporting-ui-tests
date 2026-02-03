@@ -51,7 +51,7 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
         .onPage()
-        .fileUpload("valid-fatca-election-not-sent-giin-provided.xml")
+        .fileUpload("valid-fatca-election-not-sent-giin-to-be-provided.xml")
 
       And("They enter a GIIN if prompted")
       RequiredGIINPage.maybeEnterGiin()
