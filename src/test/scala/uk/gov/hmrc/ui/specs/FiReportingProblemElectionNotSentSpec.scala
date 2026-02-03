@@ -32,8 +32,13 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
         .onPage()
         .fileUpload("valid-crs-election-not-sent-xml.xml")
 
-      And("They choose not to send elections for the reporting period")
-      ReportElectionsPage.selectNoAndContinue()
+      And("They choose send elections for the reporting period")
+      ReportElectionsPage.selectYesAndContinue()
+
+      And("They answer the CRS questions (contracts, dormant accounts, thresholds)")
+      CrsContractsPage.selectYesAndContinue()
+      CrsDormantAccountsPage.selectYesAndContinue()
+      CrsThresholdsPage.selectYesAndContinue()
 
       Then("They continue from the Check your file details page")
       CheckYourFileDetailsPage.submitPage()
@@ -42,6 +47,10 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
       Then("The elections-not-sent problem page is displayed (election not provided)")
       ProblemElectionNotSentPage.onPage()
       ProblemElectionNotSentPage.assertElectionNotSentVariant()
+      And("The user still send file without elections")
+      ProblemElectionNotSentPage.submitPage()
+      StillCheckingYourFilePage.onPage()
+
     }
 
     Scenario("FATCA file submission shows elections-not-sent problem page", ReportingTests, SoloTests) {
@@ -70,6 +79,9 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
       Then("The elections-not-sent problem page is displayed (GIIN received, elections not sent)")
       ProblemElectionNotSentPage.onPage()
       ProblemElectionNotSentPage.assertGiinReceivedElectionsNotSentVariant()
+      And("The user still send file without elections")
+      ProblemElectionNotSentPage.submitPage()
+      StillCheckingYourFilePage.onPage()
     }
   }
 }
