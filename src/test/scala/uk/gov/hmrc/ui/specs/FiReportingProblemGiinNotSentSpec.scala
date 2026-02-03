@@ -29,7 +29,7 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec {
       AuthLoginPage.loginAsAutoMatchedUser()
 
       When("The user uploads a valid CRS XML file")
-      UploadFilePage.onPage().fileUpload("valid-fatca-giin-not-sent-election-sent-and-election-not-provided.xml")
+      UploadFilePage.onPage().fileUpload("valid-fatca-giin-not-sent-election-sent-and-election-already-provided.xml")
 
       And("They enter a GIIN if prompted")
       RequiredGIINPage.maybeEnterGiin()
@@ -58,7 +58,7 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec {
       AuthLoginPage.loginAsAutoMatchedUser()
 
       When("The user uploads a valid CRS XML file")
-      UploadFilePage.onPage().fileUpload("valid-fatca-giin-not-sent-election-sent-and-election-not-provided.xml")
+      UploadFilePage.onPage().fileUpload("valid-fatca-giin-not-sent-election-sent-and-election-already-provided.xml")
 
       And("They enter a GIIN if prompted")
       RequiredGIINPage.maybeEnterGiin()
