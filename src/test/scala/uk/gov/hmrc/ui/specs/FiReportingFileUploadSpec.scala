@@ -29,7 +29,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
       UploadFilePage
         .onPage()
-        .fileUpload("valid-crs-xml.xml")
+        .fileUpload("valid-crs-fastresponseaccepted-xml.xml")
       And("They choose to send elections for the reporting period")
       ReportElectionsPage.selectYesAndContinue()
 
@@ -40,6 +40,8 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
       Then("They continue from the Check your file details page")
       CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      FileConfirmationPage.onPage()
 
     }
 
@@ -63,7 +65,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
         .onPage()
-        .fileUpload("valid-fatca-xml-fiWithoutGIIN.xml")
+        .fileUpload("valid-fatca-slowresponseaccepted-xml.xml")
       Then("The user provides the GIIN if required")
       RequiredGIINPage.maybeEnterGiin()
       And("Continues the journey for any elections made already for the reporting period")
@@ -74,6 +76,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("The user can review their file details and continue")
       CheckYourFileDetailsPage.submitPage()
       SendYourFilePage.submitFileForValidation()
+      Then("The user lands on 'still checking your file' page")
       StillCheckingYourFilePage.onPage()
 
     }
