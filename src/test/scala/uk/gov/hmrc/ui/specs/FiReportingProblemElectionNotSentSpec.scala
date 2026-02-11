@@ -48,7 +48,7 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
       ProblemElectionNotSentPage.onPage()
       ProblemElectionNotSentPage.assertElectionNotSentVariant()
       And("The user still send file without elections")
-      ProblemElectionNotSentPage.submitPage()
+      ProblemElectionNotSentPage.finishSendingFile()
       StillCheckingYourFilePage.onPage()
 
     }
@@ -80,7 +80,7 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
       ProblemElectionNotSentPage.onPage()
       ProblemElectionNotSentPage.assertGiinReceivedElectionsNotSentVariant()
       And("The user still send file without elections")
-      ProblemElectionNotSentPage.submitPage()
+      ProblemElectionNotSentPage.finishSendingFile()
       StillCheckingYourFilePage.onPage()
     }
   }

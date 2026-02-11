@@ -52,6 +52,12 @@ object ProblemElectionNotSentPage extends BasePage {
   def warningText: String =
     Driver.instance.findElement(warningTextSelector).getText.trim
 
+  def finishSendingFile(): this.type = {
+    submitPage()
+    waitForSpinnerCycle(30)
+    this
+  }
+
   def assertPageIsDisplayed(): Unit = {
     onPage()
     heading            shouldBe "There is a problem with sending the elections"

@@ -16,14 +16,7 @@
 
 package uk.gov.hmrc.ui.pages
 
-object StillCheckingYourFilePage extends BasePage {
+object FileConfirmationPage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/still-checking-your-file"
-
-  def refreshForUpdates(): this.type = {
-    onPage(pageUrl)
-    click(submitButtonId)
-    this
-  }
-
+  override val pageUrl: String = baseUrl + "/file-confirmation"
 }

@@ -16,15 +16,16 @@
 
 package uk.gov.hmrc.ui.mongo
 
-import org.mongodb.scala.bson._
+import org.mongodb.scala.bson.*
 import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.model.{Filters, Updates}
-import org.mongodb.scala.model.Indexes.descending
+import org.mongodb.scala.model.Indexes.{compoundIndex, descending}
 import org.mongodb.scala.{MongoClient, MongoCollection, Observable}
 
 import scala.concurrent.Await
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 import java.util.concurrent.TimeUnit
+import scala.language.postfixOps
 
 object MongoService {
 
@@ -85,6 +86,23 @@ object MongoService {
       timeout
     )
 
+    mongoClient.close()
+  }
+
+  def setFileStatus(dbName: String, collection: String, id: String, status: String) = {
+
+    val mongoClient: MongoClient = MongoClient()
+    val query                    = Filters.eq("_id", id)
+    val updateStatus             = Updates.set("status", BsonDocument(status))
+
+    Await.result(
+      mongoClient
+        .getDatabase(dbName)
+        .getCollection(collection)
+        .updateOne(query, updateStatus)
+        .head(),
+      2 seconds
+    )
     mongoClient.close()
   }
 }
