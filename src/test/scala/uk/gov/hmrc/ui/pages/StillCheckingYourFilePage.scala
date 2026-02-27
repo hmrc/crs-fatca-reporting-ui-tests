@@ -25,7 +25,7 @@ import org.scalatest.matchers.should.Matchers._
 object StillCheckingYourFilePage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/still-checking-your-file"
-  private val statusSelector =
+  private val statusSelector   =
     By.xpath("//dt[text()='Result of automatic checks']/following-sibling::dd//strong")
 
   def refreshForUpdates(): this.type = {
@@ -33,7 +33,6 @@ object StillCheckingYourFilePage extends BasePage {
     click(submitButtonId)
     this
   }
-
 
   def getStatus: String =
     driver.findElement(statusSelector).getText.trim
