@@ -41,8 +41,68 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("They continue from the Check your file details page")
       CheckYourFileDetailsPage.submitPage()
       SendYourFilePage.submitFileForValidation()
+      And("The user should be taken to File Successfully uploaded page")
       FileConfirmationPage.onPage()
 
+    }
+
+    Scenario("Upload rejected fast journey for Fi user CRS", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
+
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-crs-fastresponserejected-xml.xml")
+      And("They choose to send elections for the reporting period")
+      ReportElectionsPage.selectYesAndContinue()
+
+      And("They answer the CRS questions (contracts, dormant accounts, thresholds)")
+      CrsContractsPage.selectYesAndContinue()
+      CrsDormantAccountsPage.selectYesAndContinue()
+      CrsThresholdsPage.selectYesAndContinue()
+
+      Then("They continue from the Check your file details page")
+      CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      And("The user should be taken to There is a problem with your file data page")
+      RulesErrorsPage.onPage()
+
+    }
+
+    Scenario("Upload slow journey for Fi is user CRS", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
+
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-crs-slowresponseaccepted-xml.xml")
+      And("They choose to send elections for the reporting period")
+      ReportElectionsPage.selectNoAndContinue()
+      Then("They continue from the Check your file details page")
+      CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      Then("The user lands on 'still checking your file' page")
+      StillCheckingYourFilePage.waitUntilFileProcessed()
+      And("The user should be taken to the File Passed checks page")
+      FilePassedChecksPage.onPage()
+    }
+
+    Scenario("Upload slow failed journey for Fi is user CRS", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
+
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-crs-slowresponserejected-xml.xml")
+      And("They choose to send elections for the reporting period")
+      ReportElectionsPage.selectNoAndContinue()
+      Then("They continue from the Check your file details page")
+      CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      Then("The user lands on 'still checking your file' page")
+      StillCheckingYourFilePage.waitUntilFileProcessed()
+      And("The user should be taken to the File Failed checks page")
+      FileFailedChecksPage.onPage()
     }
 
     Scenario(
@@ -57,15 +117,14 @@ class FiReportingFileUploadSpec extends BaseSpec {
         .fileUpload("valid-crs-CY-xml.xml")
       And("Continues the journey to Check your file details page")
       CheckYourFileDetailsPage.onPage()
-
     }
 
-    Scenario("Upload journey for Fi is user FATCA", ReportingTests, SoloTests) {
+    Scenario("Upload fast accepted journey for Fi is user FATCA", ReportingTests, SoloTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
         .onPage()
-        .fileUpload("valid-fatca-slowresponseaccepted-xml.xml")
+        .fileUpload("valid-fatca-fastresponseaccepted-xml.xml")
       Then("The user provides the GIIN if required")
       RequiredGIINPage.maybeEnterGiin()
       And("Continues the journey for any elections made already for the reporting period")
@@ -76,9 +135,67 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("The user can review their file details and continue")
       CheckYourFileDetailsPage.submitPage()
       SendYourFilePage.submitFileForValidation()
-      Then("The user lands on 'still checking your file' page")
-      StillCheckingYourFilePage.onPage()
+      And("The user should be taken to File Successfully uploaded page")
+      FileConfirmationPage.onPage()
+    }
 
+    Scenario("Upload fast rejected journey for Fi is user FATCA", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-fatca-fastresponserejected-xml.xml")
+      Then("The user provides the GIIN if required")
+      RequiredGIINPage.maybeEnterGiin()
+      And("Continues the journey for any elections made already for the reporting period")
+      ReportElectionsPage.selectYesAndContinue()
+      And("US Treasury regulations and any thresholds for FATCA")
+      FatcaUSTreasuryRegulationsPage.selectYesAndContinue()
+      FatcaThresholdsPage.selectYesAndContinue()
+      Then("The user can review their file details and continue")
+      CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      And("The user should be taken to There is a problem with your file data page")
+      RulesErrorsPage.onPage()
+    }
+
+    Scenario("Upload slow accepted journey for Fi is user FATCA", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-fatca-slowresponseaccepted-xml.xml")
+      Then("The user provides the GIIN if required")
+      RequiredGIINPage.maybeEnterGiin()
+      And("Continues the journey for any elections made already for the reporting period")
+      ReportElectionsPage.selectNoAndContinue()
+      Then("The user can review their file details and continue")
+      CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      Then("The user lands on 'still checking your file' page")
+      StillCheckingYourFilePage.waitUntilFileProcessed()
+      And("The user should be taken to the File Passed checks page")
+      FilePassedChecksPage.onPage()
+    }
+
+    Scenario("Upload slow failed journey for Fi is user FATCA", ReportingTests, SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
+
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-fatca-slowresponserejected-xml.xml")
+      Then("The user provides the GIIN if required")
+      RequiredGIINPage.maybeEnterGiin()
+      And("Continues the journey for any elections made already for the reporting period")
+      ReportElectionsPage.selectNoAndContinue()
+      Then("They continue from the Check your file details page")
+      CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      Then("The user lands on 'still checking your file' page")
+      StillCheckingYourFilePage.waitUntilFileProcessed()
+      And("The user should be taken to the File Failed checks page")
+      FileFailedChecksPage.onPage()
     }
 
     Scenario(

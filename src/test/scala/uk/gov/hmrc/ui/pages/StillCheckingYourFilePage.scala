@@ -18,15 +18,14 @@ package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
 import org.scalatest.concurrent.Eventually.*
-import org.scalatest.concurrent.Eventually.PatienceConfig
 import org.scalatest.time.{Minutes, Seconds, Span}
-import org.scalatest.matchers.should.Matchers._
 
 object StillCheckingYourFilePage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/still-checking-your-file"
-  private val statusSelector   =
-    By.xpath("//dt[text()='Result of automatic checks']/following-sibling::dd//strong")
+
+  private val statusSelector =
+    By.xpath("//dt[@class='govuk-summary-list__key']/following::dd//strong")
 
   def refreshForUpdates(): this.type = {
     onPage(pageUrl)
@@ -45,11 +44,23 @@ object StillCheckingYourFilePage extends BasePage {
     var finalStatus = ""
 
     eventually {
-      refreshForUpdates()
-      finalStatus = getStatus
-      finalStatus should not be "Pending"
-    }
+      if (driver.getCurrentUrl.contains(pageUrl)) {
+        click(submitButtonId)
+      }
+      val status = getStatus
 
-    finalStatus
+      status match {
+        case "Pending" =>
+          fail("Still pending...")
+        case "Passed"  =>
+          driver.getCurrentUrl should include("/file-passed-checks")
+          status
+        case "Failed"  =>
+          driver.getCurrentUrl should include("/file-failed-checks")
+          status
+        case other     =>
+          fail(s"Unexpected status: $other")
+      }
+    }
   }
 }
