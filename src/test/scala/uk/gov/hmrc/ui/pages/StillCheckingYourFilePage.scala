@@ -25,7 +25,8 @@ object StillCheckingYourFilePage extends BasePage {
   override val pageUrl: String = baseUrl + "/still-checking-your-file"
 
   private val statusSelector =
-    By.xpath("//dt[@class='govuk-summary-list__key']/following::dd//strong")
+    // By.xpath("//dt[@class='govuk-summary-list__key']/following::dd//strong")
+    By.cssSelector("dt[class*=\"summary-list__key\"] + dd strong")
 
   def refreshForUpdates(): this.type = {
     onPage(pageUrl)
@@ -59,6 +60,8 @@ object StillCheckingYourFilePage extends BasePage {
           driver.getCurrentUrl should include("/file-failed-checks")
           status
         case other     =>
+          // driver.getCurrentUrl should include("/file-not-accepted")
+          // status
           fail(s"Unexpected status: $other")
       }
     }

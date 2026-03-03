@@ -69,7 +69,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
     }
 
-    Scenario("Upload slow journey for Fi is user CRS", ReportingTests, SoloTests) {
+    Scenario("Upload slow journey accepted for Fi is user CRS", ReportingTests, SoloTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
 
@@ -87,7 +87,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       FilePassedChecksPage.onPage()
     }
 
-    Scenario("Upload slow failed journey for Fi is user CRS", ReportingTests, SoloTests) {
+    Scenario("Upload slow journey rejected for Fi is user CRS", ReportingTests, SoloTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
 
