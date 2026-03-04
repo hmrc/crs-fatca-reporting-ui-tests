@@ -213,5 +213,47 @@ class FiReportingFileUploadSpec extends BaseSpec {
       And("Continues the journey to Check your file details page")
       CheckYourFileDetailsPage.onPage()
     }
+
+    Scenario("Upload slow journey CRS - SDES virus", ReportingTests, SoloTests) {
+
+      Given("The user logs in as an organisation user")
+      AuthLoginPage.loginAsOrganisationUser()
+
+      When("The user uploads a CRS large file that triggers SDES virus result")
+      UploadFilePage.onPage().fileUpload("SDES/sdesvirus_3.2MB.xml")
+
+      And("They choose not to send elections")
+      ReportElectionsPage.selectNoAndContinue()
+
+      And("They continue to the Check your file details page")
+      CheckYourFileDetailsPage.submitPage()
+
+      And("They submit the file for validation")
+      SendYourFilePage.submitFileForValidation()
+
+      Then("The user is shown the virus detected page")
+      VirusFoundPage.onPage()
+    }
+
+    Scenario("Upload slow journey CRS - SDES processing failure shows tech difficulties", ReportingTests, SoloTests) {
+
+      Given("The user logs in as an organisation user")
+      AuthLoginPage.loginAsOrganisationUser()
+
+      When("The user uploads a CRS large file that triggers SDES error result")
+      UploadFilePage.onPage().fileUpload("SDES/fastresponsesdes.xml") // your “error” trigger file
+
+      And("They choose not to send elections")
+      ReportElectionsPage.selectNoAndContinue()
+
+      And("They continue to the Check your file details page")
+      CheckYourFileDetailsPage.submitPage()
+
+      And("They submit the file for validation")
+      SendYourFilePage.submitFileForValidation()
+
+      Then("The user is shown the technical difficulties page")
+      ThereIsAProblemPage.onPage()
+    }
   }
 }

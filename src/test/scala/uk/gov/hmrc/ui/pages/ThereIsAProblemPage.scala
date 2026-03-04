@@ -1,5 +1,5 @@
 /*
- * Copyright 2026 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.mongo
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.mongo
+object ThereIsAProblemPage extends BasePage {
 
-object CrsFatcaSubmissionStatusHelper {
-
-  /** Helper for forcing post-submission states in Mongo for UI tests. Use only where the state cannot be reached
-    * reliably via stubs/UI journey.
-    */
-
-  private val database   = "crs-fatca-reporting-frontend"
-  private val collection = "user-answers"
+  override val pageUrl: String = "http://localhost:10038/report-for-crs-and-fatca/there-is-a-problem"
 
 }
