@@ -99,4 +99,9 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     waitWith(timeoutSeconds).until(ExpectedConditions.invisibilityOfElementLocated(spinner))
   }
 
+  def onPageContaining(urlPart: String): this.type = {
+    fluentWait.until(ExpectedConditions.urlContains(urlPart))
+    this
+  }
+
 }

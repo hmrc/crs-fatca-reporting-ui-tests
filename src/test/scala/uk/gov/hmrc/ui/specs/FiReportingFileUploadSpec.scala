@@ -42,8 +42,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       CheckYourFileDetailsPage.submitPage()
       SendYourFilePage.submitFileForValidation()
       And("The user should be taken to File Successfully uploaded page")
-      FileConfirmationPage.onPage()
-
+      FileConfirmationPage.checkDynamicPage()
     }
 
     Scenario("Upload rejected fast journey for Fi user CRS", ReportingTests, SoloTests) {
@@ -136,7 +135,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       CheckYourFileDetailsPage.submitPage()
       SendYourFilePage.submitFileForValidation()
       And("The user should be taken to File Successfully uploaded page")
-      FileConfirmationPage.onPage()
+      FileConfirmationPage.checkDynamicPage()
     }
 
     Scenario("Upload fast rejected journey for Fi is user FATCA", ReportingTests, SoloTests) {

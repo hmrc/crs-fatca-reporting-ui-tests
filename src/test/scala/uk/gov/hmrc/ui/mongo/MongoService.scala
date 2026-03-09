@@ -18,13 +18,9 @@ package uk.gov.hmrc.ui.mongo
 
 import org.mongodb.scala.bson.*
 import org.mongodb.scala.bson.collection.immutable.Document
-import org.mongodb.scala.model.{Filters, Updates}
-import org.mongodb.scala.model.Indexes.descending
-import org.mongodb.scala.{MongoClient, MongoCollection, Observable}
-
+import org.mongodb.scala.MongoClient
 import scala.concurrent.Await
 import scala.concurrent.duration.*
-import java.util.concurrent.TimeUnit
 import scala.language.postfixOps
 
 object MongoService {
