@@ -18,6 +18,6 @@ package uk.gov.hmrc.ui.pages
 
 object ThereIsAProblemPage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/there-is-a-problem"
+  override val pageUrl: String = baseUrl + "/problem/there-is-a-problem"
 
 }
