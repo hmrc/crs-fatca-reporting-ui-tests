@@ -115,7 +115,8 @@
                     <crs:Type>CRS504</crs:Type>
                     <crs:PaymentAmnt currCode="XPF">3240</crs:PaymentAmnt>
                 </crs:Payment>
-                <crs:OpeningDate>CRS1202</crs:OpeningDate><crs:AccountType>CRS1101</crs:AccountType>
+                <crs:DDProcedure>CRS1202</crs:DDProcedure>
+                <crs:AccountType>CRS1101</crs:AccountType>
                 <crs:JointAccount>
                     <crs:Number>5</crs:Number>
                 </crs:JointAccount>
