@@ -1,4 +1,4 @@
-CRS_OECD version attribute must have a value of "3.0"
+CRS_OECD version attribute is missing. The value must be "3.0"
 TransmittingCountry element must contain an ISO country code
 Value is missing between ReceivingCountry element tags
 Value is missing between optional Warning element tags
