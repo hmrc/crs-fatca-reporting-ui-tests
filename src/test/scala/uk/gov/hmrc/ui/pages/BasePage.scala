@@ -103,5 +103,15 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     fluentWait.until(ExpectedConditions.urlContains(urlPart))
     this
   }
+  def loadExpectedErrors(): Seq[String]            = {
+    val source = scala.io.Source.fromResource("expected-errors.txt")
+    try
+      source.getLines().map(_.trim).filter(_.nonEmpty).toSeq
+    finally
+      source.close()
+  }
+
+  def normalize(errors: Seq[String]): Seq[String] =
+    errors.map(_.trim)
 
 }

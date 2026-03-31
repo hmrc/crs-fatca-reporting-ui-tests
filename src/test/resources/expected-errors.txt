@@ -1,0 +1,100 @@
+CRS_OECD version attribute must have a value of "3.0"
+TransmittingCountry element must contain an ISO country code
+Value is missing between ReceivingCountry element tags
+Value is missing between optional Warning element tags
+Value is missing between optional Contact element tags
+Value is missing between MessageRefId element tags
+MessageTypeIndic element is not one of the allowed values
+Value is missing between ReportingPeriod element tags
+Value is missing between Timestamp element tags
+Optional ResCountryCode element must contain an ISO country code
+Value is missing for IN optional INType attribute
+Value is missing for IN issuedBy attribute. Attribute is not required if IN value is NOTIN
+Value is missing between IN element tags
+Value is missing for Name optional nameType attribute
+Value is missing between Name element tags
+Value is missing for Address optional legalAddressType attribute
+Value is missing between CountryCode element tags
+Value is missing between optional Street element tags
+Value is missing between optional BuildingIdentifier element tags
+Value is missing between optional SuiteIdentifier element tags
+Value is missing between optional FloorIdentifier element tags
+Value is missing between optional DistrictName element tags
+Value is missing between optional POB element tags
+Value is missing between optional PostCode element tags
+Value is missing between City element tags for AddressFix
+Value is missing between optional CountrySubentity element tags
+Value is missing between optional AddressFree element tags
+DocTypeIndic element is not one of the allowed values
+Value is missing between DocRefId element tags
+CorrMessageRefId element is not required for CRS and must be removed
+Value is missing between Name element tags
+Value is missing between CountryCode element tags
+DocTypeIndic element is not one of the allowed values
+Value is missing between DocRefId element tags
+Value is missing for AccountNumber optional UndocumentedAccount attribute
+Value is missing for AccountNumber optional ClosedAccount attribute
+Value is missing for AccountNumber optional DormantAccount attribute
+Value is missing for AccountNumber optional AcctNumberType attribute
+Value is missing between AccountNumber element tags
+Optional EquityInterestType element is not one of the allowed values
+Value is missing between SelfCert element tags
+Value is missing between optional ResCountryCode element tags
+Value is missing for IN optional INType attribute
+Value is missing for IN issuedBy attribute. Attribute is not required if IN value is NOTIN
+Value is missing between IN element tags
+Value is missing for Name optional nameType attribute
+Value is missing between Name element tags
+Value is missing for Address optional legalAddressType attribute
+Value is missing between CountryCode element tags
+Value is missing between optional Street element tags
+Value is missing between optional BuildingIdentifier element tags
+Value is missing between optional SuiteIdentifier element tags
+Value is missing between optional FloorIdentifier element tags
+Value is missing between optional DistrictName element tags
+Value is missing between optional POB element tags
+Value is missing between optional PostCode element tags
+Value is missing between City element tags for AddressFix
+Value is missing between optional CountrySubentity element tags
+Value is missing between optional AddressFree element tags
+Value is missing between optional AcctHolderType element tags
+Value is missing between optional ResCountryCode element tags
+Value is missing for TIN issuedBy attribute. Attribute is not required if TIN value is NOTIN
+Value is missing between TIN element tags
+Value is missing for Name optional nameType attribute
+Value is missing between optional Title element tags
+Value is missing for FirstName optional xnlNameType attribute
+FirstName value is missing. If no first name, use NFN as the value
+Value is missing for MiddleName optional xnlNameType attribute
+Value is missing between optional MiddleName element tags
+Value is missing for LastName optional xnlNameType attribute
+Value is missing between LastName element tags
+Value is missing between optional Suffix element tags
+Value is missing between optional GeneralSuffix element tags
+Value is missing for Address optional legalAddressType attribute
+Value is missing between CountryCode element tags
+Value is missing between optional Street element tags
+Value is missing between optional BuildingIdentifier element tags
+Value is missing between optional SuiteIdentifier element tags
+Value is missing between optional FloorIdentifier element tags
+Value is missing between optional DistrictName element tags
+Value is missing between optional POB element tags
+Value is missing between optional PostCode element tags
+Value is missing between City element tags for AddressFix
+Value is missing between optional CountrySubentity element tags
+Value is missing between optional AddressFree element tags
+Value is missing between optional BirthDate element tags
+Value is missing between optional City element tags for BirthInfo
+Value is missing between optional CitySubentity element tags
+Value is missing between optional FormerCountryName element tags
+Value is missing between CtrlgPersonType element tags
+Value is missing between SelfCert element tags
+Value is missing for AccountBalance currCode attribute
+Value is missing between AccountBalance element tags
+Value is missing between Type element tags
+Value is missing for PaymentAmnt currCode attribute
+Value is missing between PaymentAmnt element tags
+Value is missing between DDProcedure element tags
+Value is missing between AccountType element tags
+Value is missing between Number element tags
+PoolReport section is not required for CRS and should be removed
