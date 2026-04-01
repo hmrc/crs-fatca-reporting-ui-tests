@@ -23,7 +23,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
   Feature("Upload File Journey") {
 
-    Scenario("Upload Journey (Standard FI)", ReportingTests, SoloTests) {
+    Scenario("Upload Journey (Standard FI)", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
 
@@ -45,7 +45,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       FileConfirmationPage.checkDynamicPage()
     }
 
-    Scenario("Upload rejected fast journey for Fi user CRS", ReportingTests, SoloTests) {
+    Scenario("Upload rejected fast journey for Fi user CRS", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
 
@@ -68,7 +68,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
     }
 
-    Scenario("Upload slow journey accepted for Fi is user CRS", ReportingTests, SoloTests) {
+    Scenario("Upload slow journey accepted for Fi is user CRS", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
 
@@ -86,7 +86,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       FilePassedChecksPage.onPage()
     }
 
-    Scenario("Upload slow journey rejected for Fi is user CRS", ReportingTests, SoloTests) {
+    Scenario("Upload slow journey rejected for Fi is user CRS", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
 
@@ -104,7 +104,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       FileFailedChecksPage.onPage()
     }
 
-    Scenario("Upload a CRS file with large number of CRS Schema error messages", ReportingTests, SoloTests) {
+    Scenario("Upload a CRS file with large number of CRS Schema error messages", SoloTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
@@ -116,11 +116,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
     }
 
-    Scenario(
-      "Upload journey for Fi is user CRS and the reporting period is not within CY-12 and CY",
-      ReportingTests,
-      SoloTests
-    ) {
+    Scenario("Upload journey for Fi is user CRS and the reporting period is not within CY-12 and CY", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
@@ -130,7 +126,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       CheckYourFileDetailsPage.onPage()
     }
 
-    Scenario("Upload fast accepted journey for Fi is user FATCA", ReportingTests, SoloTests) {
+    Scenario("Upload fast accepted journey for Fi is user FATCA", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
@@ -150,7 +146,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       FileConfirmationPage.checkDynamicPage()
     }
 
-    Scenario("Upload fast rejected journey for Fi is user FATCA", ReportingTests, SoloTests) {
+    Scenario("Upload fast rejected journey for Fi is user FATCA", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
@@ -170,7 +166,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       RulesErrorsPage.onPage()
     }
 
-    Scenario("Upload slow accepted journey for Fi is user FATCA", ReportingTests, SoloTests) {
+    Scenario("Upload slow accepted journey for Fi is user FATCA", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
@@ -189,7 +185,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       FilePassedChecksPage.onPage()
     }
 
-    Scenario("Upload slow failed journey for Fi is user FATCA", ReportingTests, SoloTests) {
+    Scenario("Upload slow failed journey for Fi is user FATCA", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
 
@@ -211,8 +207,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
     Scenario(
       "Upload journey for Fi is user FATCA and the reporting period is not within CY-12 and CY",
-      ReportingTests,
-      SoloTests
+      ReportingTests
     ) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
@@ -225,7 +220,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       CheckYourFileDetailsPage.onPage()
     }
 
-    Scenario("Upload slow journey CRS - SDES virus", ReportingTests, SoloTests) {
+    Scenario("Upload slow journey CRS - SDES virus", ReportingTests) {
 
       Given("The user logs in as an organisation user")
       AuthLoginPage.loginAsOrganisationUser()
@@ -246,7 +241,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       VirusFoundPage.onPage()
     }
 
-    Scenario("Upload slow journey CRS - SDES processing failure shows tech difficulties", ReportingTests, SoloTests) {
+    Scenario("Upload slow journey CRS - SDES processing failure shows tech difficulties", ReportingTests) {
 
       Given("The user logs in as an organisation user")
       AuthLoginPage.loginAsOrganisationUser()
