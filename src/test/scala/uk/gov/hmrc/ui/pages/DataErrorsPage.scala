@@ -23,6 +23,17 @@ object DataErrorsPage extends BasePage with Matchers {
 
   override val pageUrl: String = baseUrl + "/problem/data-errors"
 
+  def loadExpectedErrors(): Seq[String] = {
+    val source = scala.io.Source.fromResource("expected-errors.txt")
+    try
+      source.getLines().map(_.trim).filter(_.nonEmpty).toSeq
+    finally
+      source.close()
+  }
+
+  def normalize(errors: Seq[String]): Seq[String] =
+    errors.map(_.trim)
+
   def getActualErrors: Seq[String] =
     driver
       .findElements(By.xpath("//*[contains(@id,'errorMessage')]"))
