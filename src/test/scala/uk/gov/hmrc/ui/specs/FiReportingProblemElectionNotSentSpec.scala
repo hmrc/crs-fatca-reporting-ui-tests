@@ -23,7 +23,7 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
 
   Feature("FI Reporting - Upload and problem pages") {
 
-    Scenario("CRS file submission shows elections-not-sent problem page", ReportingTests, SoloTests) {
+    Scenario("CRS file submission shows elections-not-sent problem page", ReportingTests) {
 
       And("The user logs in as an organisation")
       AuthLoginPage.loginAsOrganisationUser()
@@ -53,7 +53,7 @@ class FiReportingProblemElectionNotSentSpec extends BaseSpec {
 
     }
 
-    Scenario("FATCA file submission shows elections-not-sent problem page", ReportingTests, SoloTests) {
+    Scenario("FATCA file submission shows elections-not-sent problem page", ReportingTests) {
 
       And("The user logs in as an organisation")
       AuthLoginPage.loginAsOrganisationUser()

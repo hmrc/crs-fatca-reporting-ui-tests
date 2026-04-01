@@ -23,7 +23,7 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec {
 
   Feature("FI Reporting - GIIN not sent problem page") {
 
-    Scenario("GIIN not sent - elections sent successfully", ReportingTests, SoloTests) {
+    Scenario("GIIN not sent - elections sent successfully", ReportingTests) {
 
       And("The user logs in as an auto matched user")
       AuthLoginPage.loginAsAutoMatchedUser()
@@ -52,7 +52,7 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec {
       ProblemGiinNotSentPage.assertElectionsSentVariant()
     }
 
-    Scenario("GIIN not sent - elections not provided", ReportingTests, SoloTests) {
+    Scenario("GIIN not sent - elections not provided", ReportingTests) {
 
       And("The user logs in as an auto matched user")
       AuthLoginPage.loginAsAutoMatchedUser()
@@ -77,7 +77,7 @@ class FiReportingProblemGiinNotSentSpec extends BaseSpec {
       ProblemGiinNotSentPage.assertElectionsNotProvidedVariant()
     }
 
-    Scenario("GIIN not sent - elections failed", ReportingTests, SoloTests) {
+    Scenario("GIIN not sent - elections failed", ReportingTests) {
 
       And("The user logs in as an auto matched user")
       AuthLoginPage.loginAsAutoMatchedUser()
