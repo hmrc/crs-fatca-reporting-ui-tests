@@ -20,9 +20,4 @@ object FileConfirmationPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/file-confirmation/"
 
-  def checkDynamicPage(): this.type = {
-    onPageContaining(pageUrl)
-    this
-  }
-
 }
