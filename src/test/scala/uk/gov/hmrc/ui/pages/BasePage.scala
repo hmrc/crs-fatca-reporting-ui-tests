@@ -104,4 +104,9 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     this
   }
 
+  def checkDynamicPage(): this.type = {
+    onPageContaining(pageUrl)
+    this
+  }
+
 }

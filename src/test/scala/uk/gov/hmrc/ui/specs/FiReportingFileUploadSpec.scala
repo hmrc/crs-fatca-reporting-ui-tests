@@ -64,7 +64,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       CheckYourFileDetailsPage.submitPage()
       SendYourFilePage.submitFileForValidation()
       And("The user should be taken to There is a problem with your file data page")
-      RulesErrorsPage.onPage()
+      RulesErrorsPage.checkDynamicPage()
 
     }
 
@@ -163,7 +163,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       CheckYourFileDetailsPage.submitPage()
       SendYourFilePage.submitFileForValidation()
       And("The user should be taken to There is a problem with your file data page")
-      RulesErrorsPage.onPage()
+      RulesErrorsPage.checkDynamicPage()
     }
 
     Scenario("Upload slow accepted journey for Fi is user FATCA", ReportingTests) {
