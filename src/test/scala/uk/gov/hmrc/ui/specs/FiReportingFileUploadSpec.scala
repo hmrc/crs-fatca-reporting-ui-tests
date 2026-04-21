@@ -104,7 +104,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       FileFailedChecksPage.onPage()
     }
 
-    Scenario("Upload a CRS file with large number of CRS Schema error messages", SoloTests) {
+    Scenario("Upload a CRS file with large number of CRS Schema error messages", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
@@ -114,6 +114,19 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("The user navigated to data errors page with heading There is a problem with your file data page")
       DataErrorsPage.verifyAllErrors()
 
+    }
+
+    Scenario("Upload a CRS file with business rules-errors", SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-crs-rules-errors-fastresponserejected-amount-19-xml.xml")
+      ReportElectionsPage.selectNoAndContinue()
+      Then("They continue from the Check your file details page")
+      CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      RulesErrorsPage.readAllTheRulesErrors()
     }
 
     Scenario("Upload journey for Fi is user CRS and the reporting period is not within CY-12 and CY", ReportingTests) {
