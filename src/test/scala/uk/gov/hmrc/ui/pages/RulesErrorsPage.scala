@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
+import org.scalactic.Prettifier.default
 import org.scalatest.matchers.should.Matchers
 import play.api.libs.json.*
 
@@ -29,13 +30,14 @@ object RulesErrorsPage extends BasePage with Matchers {
 
   private val errorColumnSelector = By.xpath("//*[contains(@id,'errorMessage_CRS Error Code')]")
 
-  private def normalize(text: String): String    =
+  private def normalize(text: String): String =
     text
       .replace("\u2018", "'")
       .replace("\u2019", "'")
       .replace("\u201C", "\"")
       .replace("\u201D", "\"")
       .trim
+
   private def loadExpectedErrors(): Seq[JsValue] =
     Json
       .parse(Source.fromResource("rules-errors.json").mkString)
@@ -103,9 +105,42 @@ object RulesErrorsPage extends BasePage with Matchers {
     val paragraphs = (error \ "paragraphs").as[Seq[String]]
 
     paragraphs.foreach { paragraph =>
-      withClue(s"Row $row - missing paragraph '$paragraph':") {
+      withClue(s"Row $row - missing paragraph '$paragraph': ") {
         normalize(actual) should include(normalize(paragraph))
       }
+    }
+  }
+
+  private def assertParagraphWithBulletsErrors(actual: String, error: JsObject, row: Int): Unit = {
+    val sections = (error \ "sections").asOpt[Seq[JsObject]]
+
+    sections match {
+      case Some(sectionList) =>
+        sectionList.zipWithIndex.foreach { case (section, sectionIndex) =>
+          val intro   = (section \ "intro").as[String]
+          val bullets = (section \ "bullets").as[Seq[String]]
+
+          withClue(s"Row $row section ${sectionIndex + 1} - missing intro paragraph '$intro': ") {
+            normalize(actual) should include(normalize(intro))
+          }
+          bullets.foreach { bulletPoints =>
+            withClue(s"Row $row section ${sectionIndex + 1} - missing bullet points '$bulletPoints': ") {
+              normalize(actual) should include(normalize(bulletPoints))
+            }
+          }
+        }
+      case None              =>
+        val intro   = (error \ "intro").as[String]
+        val bullets = (error \ "bullets").as[Seq[String]]
+
+        withClue(s"Row $row - missing intro paragraph '$intro': ") {
+          normalize(actual) should include(normalize(intro))
+        }
+        bullets.foreach { bulletPoints =>
+          withClue(s"Row $row - missing bullet points '$bulletPoints': ") {
+            normalize(actual) should include(normalize(bulletPoints))
+          }
+        }
     }
   }
 
@@ -124,15 +159,17 @@ object RulesErrorsPage extends BasePage with Matchers {
       val errorType = (expected \ "errorType").as[String]
 
       errorType match {
-        case "simple"     =>
+        case "simple"               =>
           assertSimpleErrors(actual, (expected \ "error").as[String], index + 1)
-        case "complex"    =>
+        case "complex"              =>
           assertComplexErrors(actual, (expected \ "error").as[JsObject], index + 1)
-        case "mixed"      =>
+        case "mixed"                =>
           assertMixedErrors(actual, (expected \ "error").as[JsObject], index + 1)
-        case "paragraphs" =>
+        case "paragraphs"           =>
           assertParagraphErrors(actual, (expected \ "error").as[JsObject], index + 1)
-        case other        =>
+        case "paragraphWithBullets" =>
+          assertParagraphWithBulletsErrors(actual, (expected \ "error").as[JsObject], index + 1)
+        case other                  =>
           fail(s"Row ${index + 1} unknown errorType '$other' in rules-errors.json")
       }
 

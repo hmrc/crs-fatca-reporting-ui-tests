@@ -102,6 +102,65 @@
   {
     "errorType": "simple",
     "error":"If an AccountReport contains ‘US’ for all Individual ResCountryCode values, the account should be reported under FATCA."
+  },
+  {
+    "errorType": "paragraphWithBullets",
+    "error": {
+      "intro": "The account should be reported under FATCA if both of the following apply:",
+      "bullets": [
+        "the AcctHolderType is CRS102 or CRS103",
+        "an AccountReport contains 'US' for all Organisation ResCountryCode values"
+      ]
+    }
+  },
+  {
+    "errorType": "simple",
+    "error":"ReportingFI and Organisation elements must contain an IN element. For organisations without an IN, use ‘NOTIN’ for the IN value."
+  },
+  {
+    "errorType": "simple",
+    "error":"An IN must have an issuedBy attribute, unless the IN value is ‘NOTIN’."
+  },
+  {
+    "errorType": "simple",
+    "error":"Individual nameType attribute cannot be OECD201."
+  },
+  {
+    "errorType": "simple",
+    "error":"Address element must contain AddressFix."
+  },
+  {
+    "errorType": "simple",
+    "error":"ReportingFI has a DocTypeIndic of OECD3 for deletion. You can only delete the ReportingFI if you also delete all of the AccountReport sections for this reporting period."
+  },
+  {
+    "errorType": "paragraphWithBullets",
+    "error": {
+      "sections": [
+        {
+          "intro": "Where the MessageTypeIndic is CRS701:",
+          "bullets": [
+            "the ReportingFI DocTypeIndic must be OECD0 or OECD1",
+            "all AccountReport DocTypeIndic values must be OECD1"
+          ]
+        },
+        {
+          "intro": "Where the MessageTypeIndic is CRS702:",
+          "bullets": [
+            "the ReportingFI DocTypeIndic must be OECD0, OECD2 or OECD3",
+            "the AccountReport DocTypeIndic values must be OECD2, OECD3 or a combination of these values"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "errorType": "simple",
+    "error":"OECD0 for resending information can only be used in the ReportingFI section."
+  },
+  {
+    "errorType": "simple",
+    "error":"DocRefId values must be unique across all submitted files, except in the ReportingFI section where the DocTypeIndic is OECD0. We only keep a record of these IDs for successfully sent files."
   }
 
 ]
