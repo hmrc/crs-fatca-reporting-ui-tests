@@ -1,0 +1,361 @@
+[
+  {
+    "errorType": "complex",
+    "error": {
+      "bodyForbidden": ["-- (double dash)", "&# (ampersand hash)", "/* (slash asterisk)"],
+      "refIdForbidden": ["' (apostrophe)", "\" (quotation mark)", "& (ampersand)", "< (less than)", "> (greater than)"],
+      "replacements": {
+        "' (apostrophe)": "&apos;",
+        "\" (quotation mark)": "&quot;",
+        "& (ampersand)": "&amp;",
+        "< (less than)": "&lt;",
+        "> (greater than)": "&gt;"
+      }
+    }
+  },
+  {
+    "errorType": "simple",
+    "error": "The file must not contain emoji Unicode characters."
+  },
+  {
+    "errorType": "simple",
+    "error": "One or more of the required elements in the file contains only whitespace."
+  },
+  {
+    "errorType": "simple",
+    "error": "DocTypeIndic contains a value that indicates the file contains test data, like OECD10, OECD11, OECD12 or OECD13. Replace the test data value with a value for real data, such as OECD0, OECD1, OECD2 or OECD3."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the MessageTypeIndic is CRS703, the file must not contain a CrsBody."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the MessageTypeIndic value was CRS703 in a file from the same reporting period, then the MessageTypeIndic value in this file must not be CRS703."
+  },
+  {
+    "errorType": "simple",
+    "error": "The file must contain a CrsBody if the MessageTypeIndic is CRS701 or CRS702."
+  },
+  {
+    "errorType": "simple",
+    "error": "Each file must contain only one CrsBody."
+  },
+  {
+    "errorType": "simple",
+    "error": "SendingCompanyIN is required and must contain the FI ID for the financial institution in this report."
+  },
+  {
+    "errorType": "mixed",
+    "error": {
+      "intro": "MessageRefId element must be 100 characters or less. It must also match the file name and include the following in the order referenced:",
+      "mustContain": [
+        "'GB'",
+        "the same value as the year in the file’s ReportingPeriod in the format ‘YYYY’",
+        "'GB'",
+        "a hyphen (-)",
+        "the 13-character FI ID from the file’s SendingCompanyIN",
+        "a hyphen (-)",
+        "one to 77 characters of your choice to make the ID unique"
+      ],
+      "closingRule": "MessageRefId must also not include less than signs (<), greater than signs (>), colons (:), straight double quotes (\"), apostrophes (‘), ampersands (&), forward slashes (/), backslashes (\\), vertical bars (|), question marks (?) or asterisks (*)."
+    }
+  },
+  {
+    "errorType": "simple",
+    "error": "MessageRefId must not be the same as one used for a previously sent file. We only keep a record of the MessageRefId for successfully sent files."
+  },
+  {
+    "errorType": "paragraphs",
+    "error": {
+      "paragraphs": [
+        "File name must match the MessageRefId, excluding the .xml file extension.",
+        "If you uploaded a file with a backslash (\\) in the file name, then this will shorten the file name and cause a mismatch. Remove all backslashes from the MessageRefId and file name.",
+        "You must also remove less than signs (<), greater than signs (>), colons (:), straight double quotes (\"), apostrophes (‘), ampersands (&), forward slashes (/), vertical bars (|), question marks (?) and asterisks (*) from the file name."
+      ]
+    }
+  },
+  {
+    "errorType": "simple",
+    "error": "MessageSpec must not contain a CorrMessageRefId."
+  },
+  {
+    "errorType": "simple",
+    "error":"ReportingPeriod must be in the format YYYY-MM-DD, with 12 as the month and 31 as the day."
+  },
+  {
+    "errorType": "simple",
+    "error":"ReportingPeriod must be 2014-12-31 or later."
+  },
+  {
+    "errorType": "simple",
+    "error":"ReportingPeriod cannot contain a date later than the current year."
+  },
+  {
+    "errorType": "simple",
+    "error":"If the ReportingFI DocTypeIndic is OECD0, OECD2 or OECD3, the ReportingPeriod must match the previously sent file."
+  },
+  {
+    "errorType": "simple",
+    "error":"ReportingFI must contain one ResCountryCode element. The value must be ‘GB’."
+  },
+  {
+    "errorType": "simple",
+    "error":"If an AccountReport contains ‘US’ for all Individual ResCountryCode values, the account should be reported under FATCA."
+  },
+  {
+    "errorType": "paragraphWithBullets",
+    "error": {
+      "intro": "The account should be reported under FATCA if both of the following apply:",
+      "bullets": [
+        "the AcctHolderType is CRS102 or CRS103",
+        "an AccountReport contains 'US' for all Organisation ResCountryCode values"
+      ]
+    }
+  },
+  {
+    "errorType": "simple",
+    "error":"ReportingFI and Organisation elements must contain an IN element. For organisations without an IN, use ‘NOTIN’ for the IN value."
+  },
+  {
+    "errorType": "simple",
+    "error":"An IN must have an issuedBy attribute, unless the IN value is ‘NOTIN’."
+  },
+  {
+    "errorType": "simple",
+    "error":"Individual nameType attribute cannot be OECD201."
+  },
+  {
+    "errorType": "simple",
+    "error":"Address element must contain AddressFix."
+  },
+  {
+    "errorType": "simple",
+    "error":"ReportingFI has a DocTypeIndic of OECD3 for deletion. You can only delete the ReportingFI if you also delete all of the AccountReport sections for this reporting period."
+  },
+  {
+    "errorType": "paragraphWithBullets",
+    "error": {
+      "sections": [
+        {
+          "intro": "Where the MessageTypeIndic is CRS701:",
+          "bullets": [
+            "the ReportingFI DocTypeIndic must be OECD0 or OECD1",
+            "all AccountReport DocTypeIndic values must be OECD1"
+          ]
+        },
+        {
+          "intro": "Where the MessageTypeIndic is CRS702:",
+          "bullets": [
+            "the ReportingFI DocTypeIndic must be OECD0, OECD2 or OECD3",
+            "the AccountReport DocTypeIndic values must be OECD2, OECD3 or a combination of these values"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "errorType": "simple",
+    "error":"OECD0 for resending information can only be used in the ReportingFI section."
+  },
+  {
+    "errorType": "simple",
+    "error":"DocRefId values must be unique across all submitted files, except in the ReportingFI section where the DocTypeIndic is OECD0. We only keep a record of these IDs for successfully sent files."
+  },
+  {
+    "errorType": "paragraphWithBullets",
+    "error": {
+      "intro": [
+        "If OECD0 is in the ReportingFI section, the DocRefId value must contain the DocRefId of the section you want to resend.",
+        "Otherwise, the DocRefId element must be 164 characters or less and include the following in the order referenced:"
+      ],
+      "bullets": [
+        "the same value as the MessageRefId, up to 100 characters",
+        "a hyphen (-)",
+        "one to 63 characters of your choice to make the ID unique"
+      ]
+    }
+  },
+  {
+    "errorType": "simple",
+    "error": "ReportingFI contains a DocTypeIndic of OECD0 to resend information sent in a previous file, but the DocRefId is not one from a previous file's ReportingFI section."
+  },
+  {
+    "errorType": "simple",
+    "error": "ReportingFI contains a DocTypeIndic of OECD0 to resend information sent in a previous file but the DocRefId provided has already been corrected or deleted."
+  },
+  {
+    "errorType": "simple",
+    "error": "DocSpec element must not contain a CorrMessageRefId element."
+  },
+  {
+    "errorType": "simple",
+    "error": "The CorrDocRefId provided does not match any DocRefId in our records for the same type of section."
+  },
+  {
+    "errorType": "simple",
+    "error": "CorrDocRefId must not be included in a DocSpec where the DocTypeIndic is OECD1 for new information."
+  },
+  {
+    "errorType": "simple",
+    "error": "DocTypeIndic is OECD2 or OECD3 for a correction or deletion so you must provide a CorrDocRefId."
+  },
+  {
+    "errorType": "simple",
+    "error": "The same CorrDocRefId cannot be used more than once in each file."
+  },
+  {
+    "errorType": "simple",
+    "error": "The CorrDocRefId provided is for information that has already been corrected or deleted."
+  },
+  {
+    "errorType": "simple",
+    "error": "When correcting or deleting the AccountReport, the CorrDocRefId must contain a DocRefId reported under the same ReportingFI and ReportingPeriod."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the ReportingFI DocTypeIndic is OECD0, the DocSpec should not contain a CorrDocRefId."
+  },
+  {
+    "errorType": "simple",
+    "error": "CrsBody element must contain only one ReportingGroup section."
+  },
+  {
+    "errorType": "simple",
+    "error": "ReportingGroup section must not contain the Sponsor section."
+  },
+  {
+    "errorType": "simple",
+    "error": "ReportingGroup section must not contain the Intermediary section."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the ReportingFI DocTypeIndic is OECD0 or OECD1, the file must have an AccountReport section."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the ClosedAccount attribute is 'true', the AccountBalance value must be ‘0’."
+  },
+  {
+    "errorType": "paragraphWithBullets",
+    "error": {
+      "intro": "If the AcctNumberType is OECD601, the AccountNumber for the IBAN must include the following in the order referenced:",
+      "bullets": [
+        "2 letter country code",
+        "2 numbers",
+        "one to 30 letters or numbers"
+      ]
+    }
+  },
+  {
+    "errorType": "paragraphWithBullets",
+    "error": {
+      "intro": "If the AcctNumberType is OECD603, the AccountNumber for the ISIN must include the following in the order referenced:",
+      "bullets": [
+        "2 letter country code",
+        "9 letters or numbers for the national security identifier",
+        "one number"
+      ]
+    }
+  },
+  {
+    "errorType": "simple",
+    "error": "If the AccountNumber AcctNumberType attribute is OECD606, the AccountType value must be CRS1101."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the AccountNumber AcctNumberType attribute is OECD601, the AccountType value must be CRS1101."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the AccountType value is CRS1103, the AccountNumber AcctNumberType attribute must be OECD605."
+  },
+  {
+    "errorType": "simple",
+    "error": "If EquityInterestType is provided, the AccountType value must be CRS1104."
+  },
+  {
+    "errorType": "simple",
+    "error": "If ReportingPeriod is later than 2025-12-31, the AccountHolder SelfCert value must not be CRS900."
+  },
+  {
+    "errorType": "simple",
+    "error": "Each Individual element must contain a TIN element. For individuals without a TIN, use 'NOTIN' for the TIN value."
+  },
+  {
+    "errorType": "simple",
+    "error": "A TIN must have an issuedBy attribute, unless the TIN value is ‘NOTIN’."
+  },
+  {
+    "errorType": "simple",
+    "error": "Individual must not contain a Nationality element."
+  },
+  {
+    "errorType": "simple",
+    "error": "BirthDate must be 1900-01-01 or later and not later than the current date."
+  },
+  {
+    "errorType": "simple",
+    "error": "AccountHolder Organisation ResCountryCode element is required where the Organisation AcctHolderType is CRS102 or CRS103."
+  },
+  {
+    "errorType": "paragraphWithBullets",
+    "error": {
+      "intro": "AccountReport must not contain a ControllingPerson element if both of the following apply:",
+      "bullets": [
+        "AccountReport contains an AccountHolder Organisation element",
+        "AcctHolderType value is CRS102 or CRS103"
+      ]
+    }
+  },
+  {
+    "errorType": "paragraphWithBullets",
+    "error": {
+      "intro": "AccountReport must contain a ControllingPerson element if both of the following apply:",
+      "bullets": [
+        "AccountReport contains an AccountHolder Organisation element",
+        "AcctHolderType value is CRS101"
+      ]
+    }
+  },
+  {
+    "errorType": "simple",
+    "error": "If the AccountHolder is an Individual, the AccountReport must not contain a ControllingPerson."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the ReportingPeriod is later than 2025-12-31, the CtrlgPersonType must not be CRS800."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the ReportingPeriod is later than 2025-12-31, the ControllingPerson SelfCert must not be CRS1000."
+  },
+  {
+    "errorType": "simple",
+    "error": "AccountBalance value must be 0 or more."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the AccountType is CRS1101, the Payment Type value must be CRS502 for interest."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the AccountType is CRS1104, the Payment Type value must be either CRS503 or CRS504."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the AccountType is CRS1103, the Payment Type value must be either CRS503 or CRS504."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the ReportingPeriod is later than 2025-12-31, the DDProcedure must not be CRS1200 for not reported."
+  },
+  {
+    "errorType": "simple",
+    "error": "If the ReportingPeriod is later than 2025-12-31, the AccountType must not be CRS1100 for not reported."
+  },
+  {
+    "errorType": "simple",
+    "error": "The file must not contain a PoolReport section."
+  }
+]

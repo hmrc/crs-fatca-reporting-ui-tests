@@ -116,6 +116,19 @@ class FiReportingFileUploadSpec extends BaseSpec {
 
     }
 
+    Scenario("Upload a CRS file with business rules-errors", SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
+      UploadFilePage
+        .onPage()
+        .fileUpload("valid-crs-fastresponserejected-xml.xml")
+      ReportElectionsPage.selectNoAndContinue()
+      Then("They continue from the Check your file details page")
+      CheckYourFileDetailsPage.submitPage()
+      SendYourFilePage.submitFileForValidation()
+      RulesErrorsPage.readAllTheRulesErrors()
+    }
+
     Scenario("Upload journey for Fi is user CRS and the reporting period is not within CY-12 and CY", ReportingTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
