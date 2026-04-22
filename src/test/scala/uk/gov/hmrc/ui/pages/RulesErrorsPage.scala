@@ -130,12 +130,20 @@ object RulesErrorsPage extends BasePage with Matchers {
           }
         }
       case None              =>
-        val intro   = (error \ "intro").as[String]
-        val bullets = (error \ "bullets").as[Seq[String]]
-
-        withClue(s"Row $row - missing intro paragraph '$intro': ") {
-          normalize(actual) should include(normalize(intro))
+        val introJson = (error \ "intro").get
+        val intros    = introJson match {
+          case JsString(text)  => Seq(text)
+          case JsArray(values) => values.map(_.as[String]).toSeq
+          case _               => fail(s"Row $row - 'intro' must be a string or array")
         }
+        val bullets   = (error \ "bullets").as[Seq[String]]
+
+        intros.foreach { intro =>
+          withClue(s"Row $row - missing intro paragraph '$intro': ") {
+            normalize(actual) should include(normalize(intro))
+          }
+        }
+
         bullets.foreach { bulletPoints =>
           withClue(s"Row $row - missing bullet points '$bulletPoints': ") {
             normalize(actual) should include(normalize(bulletPoints))

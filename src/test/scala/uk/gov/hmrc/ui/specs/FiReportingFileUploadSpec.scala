@@ -121,7 +121,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
         .onPage()
-        .fileUpload("valid-crs-rules-errors-fastresponserejected-amount-28-xml.xml")
+        .fileUpload("valid-crs-fastresponserejected-xml.xml")
       ReportElectionsPage.selectNoAndContinue()
       Then("They continue from the Check your file details page")
       CheckYourFileDetailsPage.submitPage()
