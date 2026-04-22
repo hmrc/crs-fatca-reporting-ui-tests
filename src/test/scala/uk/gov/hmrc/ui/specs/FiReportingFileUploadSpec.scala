@@ -104,7 +104,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       FileFailedChecksPage.onPage()
     }
 
-    Scenario("Upload a CRS file with large number of CRS Schema error messages", ReportingTests) {
+    Scenario("Upload a CRS file with large number of CRS Schema error messages", SoloTests) {
       AuthLoginPage.loginAsOrganisationUser()
       When("The user hits the uploading page and submits a valid XML file")
       UploadFilePage
