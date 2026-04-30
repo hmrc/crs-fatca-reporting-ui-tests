@@ -41,8 +41,17 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("They continue from the Check your file details page")
       CheckYourFileDetailsPage.submitPage()
       SendYourFilePage.submitFileForValidation()
-      And("The user should be taken to File Successfully uploaded page")
+      Then("The user should be taken to File Successfully sent page")
       FileConfirmationPage.checkDynamicPage()
+      And("The user go back to manage CRS and FATCA reports")
+      FileConfirmationPage.backToManageCrsAndFatcaReport()
+      Then("The user click the link to check the results of submission checks")
+      ManageYourReportsHomePage.clickToCheckForYourRecentSubmissions()
+      Then("The user click to check the Next step for a Passed file")
+      ResultsOfSubmissionChecksPage.clickGotoConfirmation()
+      And("The user navigated to File Confirmation page")
+      FileConfirmationPage.checkDynamicPage()
+
     }
 
     Scenario("Upload rejected fast journey for Fi user CRS", ReportingTests) {
@@ -65,6 +74,14 @@ class FiReportingFileUploadSpec extends BaseSpec {
       SendYourFilePage.submitFileForValidation()
       And("The user should be taken to There is a problem with your file data page")
       RulesErrorsPage.checkDynamicPage()
+      And("The user go back to manage CRS and FATCA reports")
+      RulesErrorsPage.backToManageCrsAndFatcaReport()
+      Then("The user click the link to check the results of submission checks")
+      ManageYourReportsHomePage.clickToCheckForYourRecentSubmissions()
+      Then("The user click to check the Next step for a Filed file")
+      ResultsOfSubmissionChecksPage.clickCheckErrors()
+      And("The user navigated to Rules-Errors page")
+      RulesErrorsPage.checkDynamicPage()
 
     }
 
@@ -83,7 +100,10 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("The user lands on 'still checking your file' page")
       StillCheckingYourFilePage.waitUntilFileProcessed()
       And("The user should be taken to the File Passed checks page")
-      FilePassedChecksPage.onPage()
+      FilePassedChecksPage.submitPage()
+      And("The user should be taken to File Successfully sent page")
+      FileConfirmationPage.checkDynamicPage()
+
     }
 
     Scenario("Upload slow journey rejected for Fi is user CRS", ReportingTests) {
@@ -101,7 +121,9 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("The user lands on 'still checking your file' page")
       StillCheckingYourFilePage.waitUntilFileProcessed()
       And("The user should be taken to the File Failed checks page")
-      FileFailedChecksPage.onPage()
+      FileFailedChecksPage.submitPage()
+      And("The user should be taken to There is a problem with your file data page")
+      RulesErrorsPage.checkDynamicPage()
     }
 
     Scenario("Upload a CRS file with large number of CRS Schema error messages", SoloTests) {
@@ -155,7 +177,7 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("The user can review their file details and continue")
       CheckYourFileDetailsPage.submitPage()
       SendYourFilePage.submitFileForValidation()
-      And("The user should be taken to File Successfully uploaded page")
+      And("The user should be taken to File Successfully sent page")
       FileConfirmationPage.checkDynamicPage()
     }
 
@@ -195,7 +217,18 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("The user lands on 'still checking your file' page")
       StillCheckingYourFilePage.waitUntilFileProcessed()
       And("The user should be taken to the File Passed checks page")
-      FilePassedChecksPage.onPage()
+      FilePassedChecksPage.submitPage()
+      And("The user should be taken to File Successfully sent page")
+      FileConfirmationPage.checkDynamicPage()
+      And("The user go back to manage CRS and FATCA reports")
+      FileConfirmationPage.backToManageCrsAndFatcaReport()
+      Then("The user click the link to check the results of submission checks")
+      ManageYourReportsHomePage.clickToCheckForYourRecentSubmissions()
+      Then("The user click to check the Next step for a Passed file")
+      ResultsOfSubmissionChecksPage.clickGotoConfirmation()
+      And("The user navigated to File Confirmation page")
+      FileConfirmationPage.checkDynamicPage()
+
     }
 
     Scenario("Upload slow failed journey for Fi is user FATCA", ReportingTests) {
@@ -215,7 +248,17 @@ class FiReportingFileUploadSpec extends BaseSpec {
       Then("The user lands on 'still checking your file' page")
       StillCheckingYourFilePage.waitUntilFileProcessed()
       And("The user should be taken to the File Failed checks page")
-      FileFailedChecksPage.onPage()
+      FileFailedChecksPage.submitPage()
+      And("The user should be taken to There is a problem with your file data page")
+      RulesErrorsPage.checkDynamicPage()
+      And("The user go back to manage CRS and FATCA reports")
+      RulesErrorsPage.backToManageCrsAndFatcaReport()
+      Then("The user click the link to check the results of submission checks")
+      ManageYourReportsHomePage.clickToCheckForYourRecentSubmissions()
+      Then("The user click to check the Next step for a Failed file")
+      ResultsOfSubmissionChecksPage.clickCheckErrors()
+      And("The user navigated to Rules-Errors page")
+      RulesErrorsPage.checkDynamicPage()
     }
 
     Scenario(
@@ -251,6 +294,14 @@ class FiReportingFileUploadSpec extends BaseSpec {
       SendYourFilePage.submitFileForValidation()
 
       Then("The user is shown the virus detected page")
+      VirusFoundPage.onPage()
+      And("The user go back to manage CRS and FATCA reports")
+      VirusFoundPage.backToManageCrsAndFatcaReport()
+      Then("The user click the link to check the results of submission checks")
+      ManageYourReportsHomePage.clickToCheckForYourRecentSubmissions()
+      Then("The user click to check the Next step for a Problem file")
+      ResultsOfSubmissionChecksPage.clickCheckProblem()
+      And("The user navigated to Virus found page")
       VirusFoundPage.onPage()
     }
 

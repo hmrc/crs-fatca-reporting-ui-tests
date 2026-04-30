@@ -16,7 +16,17 @@
 
 package uk.gov.hmrc.ui.pages
 
+import org.openqa.selenium.By
+import uk.gov.hmrc.ui.conf.TestConfiguration
+
 object FileNotAcceptedPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/problem/file-not-accepted"
+
+  val manageFiPage: By = By.linkText("Send a CRS or FATCA report")
+
+  def clickHeaderContent(): Unit =
+    onPage()
+    driver.findElement(By.linkText("Send a CRS or FATCA report")).click()
+
 }
