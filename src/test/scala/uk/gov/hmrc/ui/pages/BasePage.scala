@@ -118,7 +118,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     this
   }
 
-  def clickHeaderContent(): this.type = {
+  def clickManageFinancialInstitutionsLink(): this.type = {
     click(manageFiPage)
     this
   }
