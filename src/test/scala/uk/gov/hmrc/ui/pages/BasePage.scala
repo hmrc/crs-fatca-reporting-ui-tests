@@ -24,6 +24,7 @@ import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.driver.BrowserDriver
+import uk.gov.hmrc.ui.pages.FileNotAcceptedPage.driver
 import uk.gov.hmrc.ui.utils.IdGenerators
 
 import java.time.Duration
@@ -42,6 +43,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   val yesRadioId: By              = By.id("value")
   val noRadioId: By               = By.id("value-no")
   val backToManageReportsLink: By = By.partialLinkText("Back to manage your CRS and FATCA reports")
+  val manageFiPage: By            = By.linkText("Send a CRS or FATCA report")
 
   private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(15))
@@ -113,6 +115,11 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
 
   def backToManageCrsAndFatcaReport(): this.type = {
     click(backToManageReportsLink)
+    this
+  }
+
+  def clickHeaderContent(): this.type = {
+    click(manageFiPage)
     this
   }
 

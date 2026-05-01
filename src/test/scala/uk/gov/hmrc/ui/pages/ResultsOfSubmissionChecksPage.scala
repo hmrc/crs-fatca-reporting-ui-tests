@@ -47,4 +47,10 @@ object ResultsOfSubmissionChecksPage extends BasePage {
     click(contactUs)
     this
   }
+
+  def clickUploadFileAgain(): this.type = {
+    click(uploadFileAgain)
+    this
+  }
+
 }
