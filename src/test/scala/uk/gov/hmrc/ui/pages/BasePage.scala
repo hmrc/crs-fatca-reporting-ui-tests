@@ -24,6 +24,7 @@ import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.driver.BrowserDriver
+import uk.gov.hmrc.ui.pages.FileNotAcceptedPage.driver
 import uk.gov.hmrc.ui.utils.IdGenerators
 
 import java.time.Duration
@@ -33,13 +34,16 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   case class PageNotFoundException(message: String) extends Exception(message)
 
   val pageUrl: String
-  val baseUrl: String    = TestConfiguration.url("crs-fatca-reporting-frontend") + "/report"
-  val submitButtonId: By = By.id("submit")
-  val backLinkText: By   = By.linkText("Back")
-  val pageHeader: By     = By.tagName("h1")
-  val fileUploadId: By   = By.id("file-upload")
-  val yesRadioId: By     = By.id("value")
-  val noRadioId: By      = By.id("value-no")
+  val baseUrl: String             = TestConfiguration.url("crs-fatca-reporting-frontend") + "/report"
+  val baseUrlFi: String           = TestConfiguration.url("crs-fatca-financial-institutions")
+  val submitButtonId: By          = By.id("submit")
+  val backLinkText: By            = By.linkText("Back")
+  val pageHeader: By              = By.tagName("h1")
+  val fileUploadId: By            = By.id("file-upload")
+  val yesRadioId: By              = By.id("value")
+  val noRadioId: By               = By.id("value-no")
+  val backToManageReportsLink: By = By.partialLinkText("Back to manage your CRS and FATCA reports")
+  val manageFiPage: By            = By.linkText("Send a CRS or FATCA report")
 
   private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(15))
@@ -106,6 +110,16 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
 
   def checkDynamicPage(): this.type = {
     onPageContaining(pageUrl)
+    this
+  }
+
+  def backToManageCrsAndFatcaReport(): this.type = {
+    click(backToManageReportsLink)
+    this
+  }
+
+  def clickManageFinancialInstitutionsLink(): this.type = {
+    click(manageFiPage)
     this
   }
 
