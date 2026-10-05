@@ -63,7 +63,7 @@ object RulesErrorsPage extends BasePage with Matchers {
 
   private def loadExpectedErrors(): Seq[JsValue] =
     Json
-      .parse(Source.fromResource("rules-errors.json").mkString)
+      .parse(Source.fromResource("crs-rules-errors.json").mkString)
       .as[JsArray]
       .value
       .toSeq

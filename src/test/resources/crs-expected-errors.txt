@@ -64,7 +64,7 @@ Value is missing between TIN element tags
 Value is missing for Name optional nameType attribute
 Value is missing between optional Title element tags
 Value is missing for FirstName optional xnlNameType attribute
-FirstName value is missing. If no first name, use NFN as the value
+FirstName element is missing. If no first name, use NFN as the value
 Value is missing for MiddleName optional xnlNameType attribute
 Value is missing between optional MiddleName element tags
 Value is missing for LastName optional xnlNameType attribute
@@ -91,7 +91,7 @@ Value is missing between CtrlgPersonType element tags
 Value is missing between SelfCert element tags
 Value is missing for AccountBalance currCode attribute
 Value is missing between AccountBalance element tags
-Value is missing between Type element tags
+Value is missing between Payment Type element tags
 Value is missing for PaymentAmnt currCode attribute
 Value is missing between PaymentAmnt element tags
 Value is missing between DDProcedure element tags
