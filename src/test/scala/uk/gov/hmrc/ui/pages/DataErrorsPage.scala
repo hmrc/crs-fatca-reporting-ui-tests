@@ -21,25 +21,23 @@ import org.scalatest.matchers.should.Matchers
 
 object DataErrorsPage extends BasePage with Matchers {
 
-  lazy val expectedErrors: Seq[String] =
-    loadExpectedErrors()
-  override val pageUrl: String         = baseUrl + "/problem/data-errors"
+  override val pageUrl: String = baseUrl + "/problem/data-errors"
 
   def dataErrors(): this.type =
     onPage(pageUrl)
 
-  def loadExpectedErrors(): Seq[String] = {
-    val source = scala.io.Source.fromResource("expected-errors.txt")
+  def loadExpectedErrors(resourceName: String): Seq[String] = {
+    val source = scala.io.Source.fromResource(resourceName)
     try
       source.getLines().map(_.trim).filter(_.nonEmpty).toSeq
     finally
       source.close()
   }
 
-  def verifyAllErrors(): Unit = {
+  def verifyAllErrors(resourceName: String): Unit = {
 
     val actual   = normalize(getActualErrors)
-    val expected = normalize(expectedErrors)
+    val expected = normalize(loadExpectedErrors(resourceName))
 
     val missing    = expected.diff(actual)
     val unexpected = actual.diff(expected)
@@ -57,6 +55,12 @@ object DataErrorsPage extends BasePage with Matchers {
     }
   }
 
+  def verifyAllCrsErrors(): Unit =
+    verifyAllErrors("crs-expected-errors.txt")
+
+  def verifyAllFatcaErrors(): Unit =
+    verifyAllErrors("fatca-expected-errors.txt")
+
   def normalize(errors: Seq[String]): Seq[String] =
     errors.map(_.trim)
 
@@ -66,5 +70,4 @@ object DataErrorsPage extends BasePage with Matchers {
       .toArray
       .map(_.asInstanceOf[WebElement].getText.trim)
       .toSeq
-
 }

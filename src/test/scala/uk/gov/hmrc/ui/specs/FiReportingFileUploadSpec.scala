@@ -235,7 +235,18 @@ class FiReportingFileUploadSpec extends BaseSpec {
         .fileUpload("crs-schema-100errors.xml")
       And("Continues the journey to check the file details")
       Then("The user navigated to data errors page with heading There is a problem with your file data page")
-      DataErrorsPage.verifyAllErrors()
+      DataErrorsPage.verifyAllCrsErrors()
+    }
+
+    Scenario("Upload a FATCA file with large number of FATCA Schema error messages", SoloTests) {
+      AuthLoginPage.loginAsOrganisationUser()
+      When("The user hits the uploading page and submits a valid XML file")
+      UploadFilePage
+        .onPage()
+        .fileUpload("fatca-schema-101errors.xml")
+      And("Continues the journey to check the file details")
+      Then("The user navigated to data errors page with heading There is a problem with your file data page")
+      DataErrorsPage.verifyAllFatcaErrors()
     }
 
     Scenario("Upload a CRS file with business rules-errors", SoloTests) {

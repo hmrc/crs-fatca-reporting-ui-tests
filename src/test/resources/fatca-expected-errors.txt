@@ -1,0 +1,100 @@
+SendingCompanyIN must contain the FI ID of the ReportingFI
+Contact element is not required for FATCA and should be removed
+CorrMessageRefId element is not required for FATCA and must be removed
+Optional ResCountryCode element must contain an ISO country code
+Optional ResCountryCode element must contain an ISO country code
+Value is missing for TIN issuedBy attribute
+Optional TIN value must be a GIIN or 9 unique digits. The 9 unique digits can be in the format 123456789, 12-3456789 or 123-45-6789
+Name optional nameType attribute is not one of the allowed values. For the Individual element, this attribute is not allowed and should be removed
+CountryCode element must contain an ISO country code
+Optional Street element must be 200 characters or less
+City element must be 200 characters or less
+CountryCode element must contain an ISO country code
+Optional Street element must be 200 characters or less
+Optional FilerCategory element is not one of the allowed values
+DocTypeIndic element is not one of the allowed values
+Optional ResCountryCode element must contain an ISO country code
+Optional ResCountryCode element must contain an ISO country code
+Value is missing for TIN issuedBy attribute
+Value is missing between optional TIN element tags
+Value is missing for TIN issuedBy attribute
+Value is missing between optional TIN element tags
+CountryCode element must contain an ISO country code
+CountryCode element must contain an ISO country code
+Optional Street element must be 200 characters or less
+Optional FilerCategory element is not one of the allowed values
+DocTypeIndic element is not one of the allowed values
+Optional ResCountryCode element must contain an ISO country code
+Optional ResCountryCode element must contain an ISO country code
+Value is missing for TIN issuedBy attribute
+Value is missing between optional TIN element tags
+CountryCode element must contain an ISO country code
+Optional Street element must be 200 characters or less
+CountryCode element must contain an ISO country code
+Optional Street element must be 200 characters or less
+Optional FilerCategory element is not one of the allowed values
+DocTypeIndic element is not one of the allowed values
+DocTypeIndic element is not one of the allowed values
+AccountClosed element value must be true or false
+AccountHolder must contain either Individual or Organisation and AcctHolderType
+Optional ResCountryCode element must contain an ISO country code
+Optional ResCountryCode element must contain an ISO country code
+CountryCode element must contain an ISO country code
+CountryCode element must contain an ISO country code
+FirstName element must be 200 characters or less
+FirstName element must be 200 characters or less
+Optional BirthDate element must be in the format YYYY-MM-DD
+Value is missing between CountryCode element tags
+AccountBalance element must have 2 decimal places or less
+AccountBalance currCode attribute must contain an ISO currency code
+Payment Type element is not one of the allowed values
+PaymentAmnt element must have 2 decimal places or less
+PaymentAmnt currCode attribute must contain an ISO currency code
+Payment Type element is not one of the allowed values
+PaymentAmnt element must have 2 decimal places or less
+PaymentAmnt currCode attribute must contain an ISO currency code
+ReportingGroup must contain either NilReport or AccountReport. PoolReport is not required for UK reporting and should be removed, if provided
+DocTypeIndic element is not one of the allowed values
+DocTypeIndic element is not one of the allowed values
+MadeUpAttribute within AccountNumber element is not an accepted attribute name
+AccountClosed element value must be true or false
+Optional AcctHolderType element is not one of the allowed values
+FirstName element must be 200 characters or less
+FirstName element must be 200 characters or less
+Optional BirthDate element must be in the format YYYY-MM-DD
+AccountBalance currCode attribute must contain an ISO currency code
+Payment Type element is not one of the allowed values
+PaymentAmnt element must have 2 decimal places or less
+PaymentAmnt currCode attribute must contain an ISO currency code
+Payment Type element is not one of the allowed values
+PaymentAmnt element must have 2 decimal places or less
+PaymentAmnt currCode attribute must contain an ISO currency code
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+Optional FilerCategory element is not one of the allowed values
+Optional FilerCategory element is not one of the allowed values
+Optional FilerCategory element is not one of the allowed values
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+AccountClosed element value must be true or false
+FirstName element must be 200 characters or less
+Optional BirthDate element must be in the format YYYY-MM-DD
+Optional BirthDate element must be in the format YYYY-MM-DD
+AccountBalance element must be a number
+Payment Type element is not one of the allowed values
+PaymentAmnt element must be a number
+Payment Type element is not one of the allowed values
+PaymentAmnt element must be a number
+AccountClosed element value must be true or false
+Optional AcctHolderType element is not one of the allowed values
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
+PoolReport section is not required for UK reporting and should be removed
